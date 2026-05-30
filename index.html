@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhil Sai | AI Generalist, Zoho Developer & Business Consultant</title>
+    <meta name="description" content="Connecting systems. Automating operations. Driving business forward. Bespoke automation portfolio of Akhil Sai.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cinematic-loader"></div>
+
+    <!-- Header Navigation -->
+    <header id="header">
+        <div class="nav-container">
+            <a href="#" class="logo-area">
+                <div class="logo-details">
+                    <span class="logo-name">Akhil Sai</span>
+                    <span class="logo-sub">AI Generalist · Zoho Developer · Business Consultant</span>
+                </div>
+            </a>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#expertise" class="nav-link">Expertise</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#how-i-help" class="nav-link">Approach</a>
+                <a href="#zoho-ecosystem" class="nav-link">About</a>
+                <a href="#how-i-help" class="nav-link">Insights</a>
+                <button class="connect-btn-header" onclick="openContactModal()">
+                    Let's Connect <span class="btn-star">✦</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <!-- Layer 1: Full-screen black background is handled by CSS on .hero-section -->
+
+            <!-- Layer 2: Interactive SVG Robot Mascot (Clean and minimal, z-index: 1) -->
+            <div class="hero-mascot-container">
+                <svg id="svg-mascot" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="body-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1c1c1f" />
+                            <stop offset="100%" stop-color="#0f0f11" />
+                        </linearGradient>
+                        <linearGradient id="graphite-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#3a3c42" />
+                            <stop offset="100%" stop-color="#242528" />
+                        </linearGradient>
+                        <radialGradient id="eye-glow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ff7a00" stop-opacity="1" />
+                            <stop offset="30%" stop-color="#ff4c29" stop-opacity="0.8" />
+                            <stop offset="100%" stop-color="#ff4c29" stop-opacity="0" />
+                        </radialGradient>
+                        <radialGradient id="core-glow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ff4c29" stop-opacity="1" />
+                            <stop offset="100%" stop-color="#ff3e00" stop-opacity="0" />
+                        </radialGradient>
+                        <filter id="glow-filter" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="8" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+                        <radialGradient id="halo-glow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ff4c29" stop-opacity="0.18" />
+                            <stop offset="60%" stop-color="#ff4c29" stop-opacity="0.05" />
+                            <stop offset="100%" stop-color="#ff4c29" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+                    
+                    <!-- Background Ambient Halo & Concentric Precision Orbits (Layer 2.0 - behind mascot & shadow) -->
+                    <circle id="mascot-bg-halo" cx="200" cy="240" r="180" fill="url(#halo-glow)" opacity="0.9" />
+                    
+                    <!-- Faint Orbital Concentric Tracks -->
+                    <g id="mascot-bg-orbits">
+                        <circle cx="200" cy="240" r="130" stroke="rgba(255, 76, 41, 0.08)" stroke-width="1.0" stroke-dasharray="10 120" class="bg-orbit-inner" />
+                        <circle cx="200" cy="240" r="170" stroke="rgba(255, 255, 255, 0.05)" stroke-width="0.8" stroke-dasharray="30 150 10 30" class="bg-orbit-outer" />
+                    </g>
+                    
+                    <!-- Floor Shadow -->
+                    <ellipse cx="200" cy="350" rx="70" ry="12" fill="#000000" opacity="0.6" class="mascot-shadow" />
+                    
+                    <!-- Mascot Group -->
+                    <g id="mascot-group">
+                        <!-- Body / Torso -->
+                        <g id="mascot-body-group">
+                            <!-- Neck Joint -->
+                            <rect x="188" y="200" width="24" height="30" rx="6" fill="url(#graphite-grad)" />
+                            <line x1="188" y1="215" x2="212" y2="215" stroke="#1c1c1f" stroke-width="2" />
+                            
+                            <!-- Shoulders & Arms -->
+                            <!-- Left Arm -->
+                            <g class="left-arm">
+                                <circle cx="140" cy="245" r="14" fill="url(#graphite-grad)" />
+                                <path d="M140 245 C120 270, 115 295, 120 315" fill="none" stroke="url(#body-grad)" stroke-width="16" stroke-linecap="round" />
+                                <circle cx="120" cy="315" r="10" fill="#ff4c29" filter="url(#glow-filter)" opacity="0.8" class="eye-pulse" />
+                            </g>
+                            <!-- Right Arm -->
+                            <g class="right-arm">
+                                <circle cx="260" cy="245" r="14" fill="url(#graphite-grad)" />
+                                <path d="M260 245 C280 270, 285 295, 280 315" fill="none" stroke="url(#body-grad)" stroke-width="16" stroke-linecap="round" />
+                                <circle cx="280" cy="315" r="10" fill="#ff4c29" filter="url(#glow-filter)" opacity="0.8" class="eye-pulse" />
+                            </g>
+
+                            <!-- Main Torso Chassis -->
+                            <rect x="150" y="225" width="100" height="110" rx="32" fill="url(#body-grad)" stroke="#222" stroke-width="1.5" />
+                            <!-- Graphite chest accent plates -->
+                            <rect x="160" y="235" width="80" height="45" rx="16" fill="#141416" />
+                            
+                            <!-- Chest glowing energy core -->
+                            <!-- Chest glowing energy core -->
+                            <circle id="mascot-core-glow" cx="200" cy="285" r="18" fill="url(#core-glow)" filter="url(#glow-filter)" class="core-pulse" />
+                            <circle cx="200" cy="285" r="8" fill="#ff4c29" />
+                            <circle cx="200" cy="285" r="18" fill="none" stroke="url(#graphite-grad)" stroke-width="3" />
+                        </g>
+                        
+                        <!-- Head -->
+                        <g id="mascot-head-group">
+                            <!-- Ears / Side Pods -->
+                            <rect x="132" y="115" width="12" height="40" rx="6" fill="url(#graphite-grad)" />
+                            <rect x="256" y="115" width="12" height="40" rx="6" fill="url(#graphite-grad)" />
+                            
+                            <!-- Left Antenna Group -->
+                            <g id="mascot-antenna-l">
+                                <path d="M138 115 L130 85" stroke="url(#graphite-grad)" stroke-width="3" stroke-linecap="round" />
+                                <circle cx="130" cy="85" r="5" fill="#ff4c29" filter="url(#glow-filter)" class="eye-pulse" />
+                            </g>
+                            <!-- Right Antenna Group -->
+                            <g id="mascot-antenna-r">
+                                <path d="M262 115 L270 85" stroke="url(#graphite-grad)" stroke-width="3" stroke-linecap="round" />
+                                <circle cx="270" cy="85" r="5" fill="#ff4c29" filter="url(#glow-filter)" class="eye-pulse" />
+                            </g>
+                            
+                            <!-- Skull Backdrop -->
+                            <rect x="140" y="90" width="120" height="120" rx="44" fill="url(#body-grad)" stroke="#222" stroke-width="1.5" />
+                            
+                            <!-- Parallax Faceplate Group -->
+                            <g id="mascot-faceplate-group">
+                                <!-- Glossy Face Shield -->
+                                <rect x="148" y="105" width="104" height="90" rx="36" fill="#08080a" stroke="#1c1c1f" stroke-width="1.5" />
+                                <rect x="152" y="109" width="96" height="40" rx="20" fill="#141417" opacity="0.4" />
+                                
+                                <!-- Parallax Eyes Group -->
+                                <g id="mascot-eyes-group">
+                                    <!-- Left Eye -->
+                                    <circle cx="180" cy="148" r="16" fill="url(#eye-glow)" filter="url(#glow-filter)" class="eye-pulse" />
+                                    <circle cx="180" cy="148" r="7" fill="#ff4c29" />
+                                    <circle cx="182" cy="146" r="2" fill="#ffffff" opacity="0.8" />
+                                    
+                                    <!-- Right Eye -->
+                                    <circle cx="220" cy="148" r="16" fill="url(#eye-glow)" filter="url(#glow-filter)" class="eye-pulse" />
+                                    <circle cx="220" cy="148" r="7" fill="#ff4c29" />
+                                    <circle cx="222" cy="146" r="2" fill="#ffffff" opacity="0.8" />
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Layer 3: Moving Light Streak System has been removed completely to keep the mascot silhouette clean, calm, and visually uncluttered. -->
+
+            <!-- Layer 4: Dark Gradient legibility Overlay (Melt artwork into pure black background, z-index: 3) -->
+            <div class="hero-gradient-overlay"></div>
+
+            <!-- Layer 5: Typography & CTA (Floating directly on top of artwork background, z-index: 5) -->
+            <div class="hero-content">
+                <div class="badge-accent">
+                    <span class="badge-icon">✦</span>
+                    <span>Available for projects</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Connecting systems.</span>
+                    <span class="title-line">Automating operations.</span>
+                    <span class="title-line">Driving <span class="highlight-text">business forward.</span></span>
+                </h1>
+                <p class="hero-subtitle">
+                    I connect the right tools, automate workflows and build scalable systems tailored to your business.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#work" class="btn btn-primary">
+                        Explore My Work
+                        <span class="arrow-circle">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        </span>
+                    </a>
+                    <a href="javascript:void(0)" onclick="openContactModal()" class="btn-text">
+                        Let's Talk
+                        <span class="arrow-flat">→</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- "How I Help" Section (White Card Backdrop - Animated steps) -->
+        <section id="how-i-help" class="how-i-help-section">
+            <div class="section-container">
+                <div class="complexity-card glass-panel-light">
+                    <div class="complexity-left">
+                        <span class="sub-accent">HOW I HELP</span>
+                        <h2 class="complexity-title">From complexity<br>to <span class="highlight-orange">clarity.</span></h2>
+                    </div>
+                    
+                    <div class="complexity-steps">
+                        <!-- Step 1 -->
+                        <div class="step-card" data-step="1">
+                            <div class="step-icon-container">
+                                <div class="step-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <circle cx="12" cy="12" r="6"></circle>
+                                        <circle cx="12" cy="12" r="2"></circle>
+                                    </svg>
+                                </div>
+                                <span class="step-num">01</span>
+                            </div>
+                            <h3 class="step-name">Understand</h3>
+                            <p class="step-desc">Business goals, challenges and current process</p>
+                        </div>
+                        
+                        <div class="step-connector"></div>
+
+                        <!-- Step 2 -->
+                        <div class="step-card" data-step="2">
+                            <div class="step-icon-container">
+                                <div class="step-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 20h9"></path>
+                                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="step-num">02</span>
+                            </div>
+                            <h3 class="step-name">Design</h3>
+                            <p class="step-desc">The right workflow and system architecture</p>
+                        </div>
+
+                        <div class="step-connector"></div>
+
+                        <!-- Step 3 -->
+                        <div class="step-card" data-step="3">
+                            <div class="step-icon-container">
+                                <div class="step-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                    </svg>
+                                </div>
+                                <span class="step-num">03</span>
+                            </div>
+                            <h3 class="step-name">Integrate</h3>
+                            <p class="step-desc">Connect tools, vendors and platforms</p>
+                        </div>
+
+                        <div class="step-connector"></div>
+
+                        <!-- Step 4 -->
+                        <div class="step-card" data-step="4">
+                            <div class="step-icon-container">
+                                <div class="step-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                    </svg>
+                                </div>
+                                <span class="step-num">04</span>
+                            </div>
+                            <h3 class="step-name">Automate</h3>
+                            <p class="step-desc">Eliminate manual work with smart automation</p>
+                        </div>
+
+                        <div class="step-connector"></div>
+
+                        <!-- Step 5 -->
+                        <div class="step-card" data-step="5">
+                            <div class="step-icon-container">
+                                <div class="step-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                                        <polyline points="12 4 18 10 6 14"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="step-num">05</span>
+                            </div>
+                            <h3 class="step-name">Optimize</h3>
+                            <p class="step-desc">Monitor, analyze and scale for continuous growth</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise & Zoho Ecosystem Section -->
+        <section id="expertise" class="expertise-zoho-section">
+            <div class="section-container split-layout">
+                
+                <!-- Left Column: Expertise Area (Dark background) -->
+                <div class="expertise-column">
+                    <span class="sub-accent">MY EXPERTISE</span>
+                    <div class="expertise-list">
+                        <!-- Item 1 -->
+                        <div class="expertise-item">
+                            <div class="exp-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M12 6v6l4 2"></path></svg>
+                            </div>
+                            <div class="exp-text">
+                                <h3>AI Automations & Agents</h3>
+                                <p>AI workflows, chatbots & process automation</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="expertise-item">
+                            <div class="exp-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                            </div>
+                            <div class="exp-text">
+                                <h3>Zoho Development</h3>
+                                <p>Custom solutions across Zoho suite</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="expertise-item">
+                            <div class="exp-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"></path><path d="M8 6l-6 6 6 6"></path></svg>
+                            </div>
+                            <div class="exp-text">
+                                <h3>System Integrations</h3>
+                                <p>APIs, Webhooks & third-party tool integrations</p>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="expertise-item">
+                            <div class="exp-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                            </div>
+                            <div class="exp-text">
+                                <h3>Business Consulting</h3>
+                                <p>Process improvement & operational efficiency</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="javascript:void(0)" onclick="openContactModal()" class="view-expertise-link">
+                        View all expertise <span class="arrow-orange">→</span>
+                    </a>
+                </div>
+
+                <!-- Right Column: Zoho Ecosystem (Pure White card container - Official Full-Color Zoho One Logos) -->
+                <div class="zoho-column" id="zoho-ecosystem">
+                    <div class="zoho-card glass-panel-light">
+                        <span class="sub-accent center-align">ZOHO ECOSYSTEM</span>
+                        
+                        <div class="zoho-grid">
+                            <!-- CRM (Official Red Interlocking Handshake Loop) -->
+                            <div class="zoho-app-item" data-app="CRM">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/crm.svg" alt="Zoho CRM">
+                                </div>
+                                <span class="app-name">Zoho CRM</span>
+                            </div>
+                            <!-- Books (Official Blue & Amber Ledger Pages) -->
+                            <div class="zoho-app-item" data-app="Books">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/books.svg" alt="Zoho Books">
+                                </div>
+                                <span class="app-name">Zoho Books</span>
+                            </div>
+                            <!-- Creator (Official Blue Bracket and Red Dot) -->
+                            <div class="zoho-app-item" data-app="Creator">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/creator.svg" alt="Zoho Creator">
+                                </div>
+                                <span class="app-name">Zoho Creator</span>
+                            </div>
+                            <!-- Flow (Official Green Dynamic Connection Loops) -->
+                            <div class="zoho-app-item" data-app="Flow">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/flow.svg" alt="Zoho Flow">
+                                </div>
+                                <span class="app-name">Zoho Flow</span>
+                            </div>
+                            <!-- Desk (Official Pink Conversation head support) -->
+                            <div class="zoho-app-item" data-app="Desk">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/desk.svg" alt="Zoho Desk">
+                                </div>
+                                <span class="app-name">Zoho Desk</span>
+                            </div>
+                            <!-- Analytics (Official SQL BI Chart Orange Circle) -->
+                            <div class="zoho-app-item" data-app="Analytics">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/analytics.svg" alt="Zoho Analytics">
+                                </div>
+                                <span class="app-name">Zoho Analytics</span>
+                            </div>
+                            <!-- Campaigns (Official Megaphone Broadcast Speaker) -->
+                            <div class="zoho-app-item" data-app="Campaigns">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/campaigns.svg" alt="Zoho Campaigns">
+                                </div>
+                                <span class="app-name">Zoho Campaigns</span>
+                            </div>
+                            <!-- Forms (Official Document Checkbox Sheet) -->
+                            <div class="zoho-app-item" data-app="Forms">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/forms.svg" alt="Zoho Forms">
+                                </div>
+                                <span class="app-name">Zoho Forms</span>
+                            </div>
+                            <!-- Projects (Official targeted circle check milestone) -->
+                            <div class="zoho-app-item" data-app="Projects">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/projects.svg" alt="Zoho Projects">
+                                </div>
+                                <span class="app-name">Zoho Projects</span>
+                            </div>
+                            <!-- People (Official Orange employee team profiles) -->
+                            <div class="zoho-app-item" data-app="People">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/people.svg" alt="Zoho People">
+                                </div>
+                                <span class="app-name">Zoho People</span>
+                            </div>
+                            <!-- Sign (Official Teal Digital Signature) -->
+                            <div class="zoho-app-item" data-app="Sign">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/sign.svg" alt="Zoho Sign">
+                                </div>
+                                <span class="app-name">Zoho Sign</span>
+                            </div>
+                            <!-- Expense (Official Premium Expense Wallet) -->
+                            <div class="zoho-app-item" data-app="Expense">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/expense.svg" alt="Zoho Expense">
+                                </div>
+                                <span class="app-name">Zoho Expense</span>
+                            </div>
+                            <!-- Payroll (Official Royal Blue Salary Ledger) -->
+                            <div class="zoho-app-item" data-app="Payroll">
+                                <div class="app-icon">
+                                    <img src="https://www.zohowebstatic.com/sites/zweb/images/producticon/payroll.svg" alt="Zoho Payroll">
+                                </div>
+                                <span class="app-name">Zoho Payroll</span>
+                            </div>
+                            <!-- More -->
+                            <div class="zoho-app-item" data-app="More">
+                                <div class="app-icon more-color">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                </div>
+                                <span class="app-name">and more</span>
+                            </div>
+                        </div>
+
+                        <!-- Mini robot callout (Light gray backdrop inside card) -->
+                        <div class="robot-callout">
+                            <div class="robot-avatar">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                                    <circle cx="12" cy="5" r="2"></circle>
+                                    <path d="M12 7v4"></path>
+                                    <line x1="8" y1="16" x2="8.01" y2="16"></line>
+                                    <line x1="16" y1="16" x2="16.01" y2="16"></line>
+                                </svg>
+                            </div>
+                            <div class="robot-text">
+                                <p class="robot-title">Need help with Zoho or automation?</p>
+                                <p class="robot-subtitle">I'll help you find the right solution for your business.</p>
+                            </div>
+                            <button class="connect-btn-black" onclick="openContactModal()">
+                                Let's Connect <span class="btn-star">✦</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- "Featured Work" Section -->
+        <section id="work" class="work-section">
+            <div class="section-container">
+                <div class="work-header">
+                    <div>
+                        <span class="sub-accent">FEATURED WORK ✦</span>
+                        <h2 class="section-title">Case studies of smart operations</h2>
+                    </div>
+                    <a href="javascript:void(0)" onclick="openContactModal()" class="view-all-projects">
+                        View all projects <span class="arrow-orange">→</span>
+                    </a>
+                </div>
+
+                <div class="work-grid">
+                    <!-- Project 1: Lead Automation System -->
+                    <div class="project-card" onclick="openProjectModal('lead-automation')">
+                        <div class="project-image-container">
+                            <div class="project-glow lead-glow"></div>
+                            
+                            <!-- High Fidelity SVG engine mechanism -->
+                            <svg class="fidelity-svg" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="100" cy="60" r="32" stroke="#FF4C29" stroke-width="1.5" stroke-dasharray="4 4" />
+                                <circle cx="100" cy="60" r="22" stroke="#FF4C29" stroke-width="2" />
+                                <path d="M100 20V32M100 88v12M60 60h12M128 60h12" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                                <circle cx="100" cy="38" r="3" fill="#FF4C29" />
+                                <circle cx="100" cy="82" r="3" fill="#FF4C29" />
+                                <circle cx="78" cy="60" r="3" fill="#ffffff" />
+                                <circle cx="122" cy="60" r="3" fill="#ffffff" />
+                            </svg>
+                        </div>
+                        <div class="project-meta">
+                            <div class="project-tags">
+                                <span class="tag">Zoho Flow</span>
+                                <span class="tag">CRM</span>
+                                <span class="tag">Automation</span>
+                            </div>
+                            <div class="project-heading-area">
+                                <h3 class="project-title">Lead Automation System</h3>
+                                <span class="project-arrow">↗</span>
+                            </div>
+                            <p class="project-desc">Automated lead capture, scoring and follow-ups using Zoho CRM & Flow.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Operations Dashboard -->
+                    <div class="project-card" onclick="openProjectModal('ops-dashboard')">
+                        <div class="project-image-container">
+                            <div class="project-glow ops-glow"></div>
+                            
+                            <!-- High Fidelity SVG glowing charts -->
+                            <svg class="fidelity-svg" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="30" y="30" width="140" height="60" rx="4" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                                <!-- Grid Lines -->
+                                <line x1="30" y1="50" x2="170" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                                <line x1="30" y1="70" x2="170" y2="70" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                                <!-- Area chart -->
+                                <path d="M40 78L65 62L90 70L115 48L140 58L160 42" stroke="#FF4C29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M40 78L65 62L90 70L115 48L140 58L160 42V90H40V78Z" fill="url(#orange-gradient)" opacity="0.15"/>
+                                
+                                <defs>
+                                    <linearGradient id="orange-gradient" x1="100" y1="30" x2="100" y2="90" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FF4C29"/>
+                                        <stop offset="1" stop-color="#FF4C29" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="project-meta">
+                            <div class="project-tags">
+                                <span class="tag">Zoho Analytics</span>
+                                <span class="tag">Dashboard</span>
+                            </div>
+                            <div class="project-heading-area">
+                                <h3 class="project-title">Operations Dashboard</h3>
+                                <span class="project-arrow">↗</span>
+                            </div>
+                            <p class="project-desc">Real-time dashboard for tracking sales, inventory, invoices and performance.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Multi Platform Integration -->
+                    <div class="project-card" onclick="openProjectModal('multi-platform')">
+                        <div class="project-image-container">
+                            <div class="project-glow multi-glow"></div>
+                            
+                            <!-- High Fidelity SVG connected network hubs -->
+                            <svg class="fidelity-svg" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="100" cy="60" r="12" fill="#FF4C29" fill-opacity="0.2" stroke="#FF4C29" stroke-width="1.5" />
+                                <circle cx="100" cy="60" r="4" fill="#FF4C29" />
+                                
+                                <circle cx="50" cy="40" r="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                                <circle cx="150" cy="40" r="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                                <circle cx="60" cy="85" r="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                                <circle cx="140" cy="85" r="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                                
+                                <line x1="92" y1="55" x2="58" y2="44" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="2 2" />
+                                <line x1="108" y1="55" x2="142" y2="44" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="2 2" />
+                                <line x1="93" y1="65" x2="67" y2="81" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="2 2" />
+                                <line x1="107" y1="65" x2="133" y2="81" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="2 2" />
+                            </svg>
+                        </div>
+                        <div class="project-meta">
+                            <div class="project-tags">
+                                <span class="tag">API</span>
+                                <span class="tag">Integration</span>
+                                <span class="tag">Automation</span>
+                            </div>
+                            <div class="project-heading-area">
+                                <h3 class="project-title">Multi Platform Integration</h3>
+                                <span class="project-arrow">↗</span>
+                            </div>
+                            <p class="project-desc">Connected multiple tools and APIs to automate end-to-end operations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Big CTA Card Section (Pure White card backdrop matching image) -->
+        <section class="cta-section">
+            <div class="section-container">
+                <div class="cta-card glass-panel-light">
+                    <div class="cta-left">
+                        <blockquote class="cta-quote">
+                            Good systems don't just save time, they create <span class="accent-orange-bold">freedom to grow.</span>
+                        </blockquote>
+                        <span class="cta-signature">Akhil Sai</span>
+                    </div>
+
+                    <div class="cta-right">
+                        <h3 class="cta-form-title">Have a project in mind?</h3>
+                        <p class="cta-form-sub">Let's connect and build something impactful together.</p>
+                        <button class="connect-btn-big" onclick="openContactModal()">
+                            Let's Connect <span class="btn-star">✦</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <a href="#" class="logo-area">
+                    <div class="logo-details">
+                        <span class="logo-name">Akhil Sai</span>
+                        <span class="logo-sub">AI Generalist · Zoho Developer · Business Consultant</span>
+                    </div>
+                </a>
+            </div>
+            <div class="footer-right">
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/akhil-sai" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/akhil-sai" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:akhil.sai@example.com" aria-label="Email">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Drawer Modals -->
+    <!-- 1. General Let's Connect Modal -->
+    <div class="modal-backdrop" id="contactModal">
+        <div class="modal-card glass-panel">
+            <button class="modal-close" onclick="closeContactModal()">✕</button>
+            <h2 class="modal-title">Let's Connect <span class="orange-star">✦</span></h2>
+            <p class="modal-subtitle">Have an integration challenge or looking for Zoho optimization? Drop a message!</p>
+            
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="clientName">Your Name</label>
+                    <input type="text" id="clientName" required placeholder="e.g. John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="clientEmail">Your Email</label>
+                    <input type="email" id="clientEmail" required placeholder="e.g. john@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="projectType">How can I help you?</label>
+                    <select id="projectType">
+                        <option value="zoho">Zoho Custom Suite Development</option>
+                        <option value="ai">AI Automations & Workflows</option>
+                        <option value="integration">System API & Webhook Integrations</option>
+                        <option value="consulting">Business Operations Consulting</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="clientMessage">Tell me about your system or process goals</label>
+                    <textarea id="clientMessage" rows="4" placeholder="Briefly describe what needs optimization..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                    <span class="loader hidden"></span>
+                </button>
+
+                <div id="formFeedback" class="form-feedback hidden"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. Zoho App Detail Overlay Modal -->
+    <div class="modal-backdrop" id="appDetailModal">
+        <div class="modal-card glass-panel app-detail-card">
+            <button class="modal-close" onclick="closeAppModal()">✕</button>
+            <div class="app-detail-header">
+                <div class="app-detail-icon" id="modalAppIcon"></div>
+                <div>
+                    <h2 class="modal-title" id="modalAppName">Zoho App</h2>
+                    <span class="app-badge">Zoho Ecosystem</span>
+                </div>
+            </div>
+            <div class="app-detail-content">
+                <p id="modalAppDesc">App description goes here.</p>
+                <h4 class="capabilities-title">Key Integration Use Cases:</h4>
+                <ul class="capabilities-list" id="modalAppCapabilities"></ul>
+            </div>
+            <button class="connect-btn-black full-width" onclick="switchToContactFromApp()">Inquire About This App</button>
+        </div>
+    </div>
+
+    <!-- 3. Featured Work Detail Modal -->
+    <div class="modal-backdrop" id="projectDetailModal">
+        <div class="modal-card glass-panel project-detail-card">
+            <button class="modal-close" onclick="closeProjectModal()">✕</button>
+            <div class="project-detail-header">
+                <span class="project-modal-category" id="projectModalCat">Category</span>
+                <h2 class="modal-title" id="projectModalTitle">Project Title</h2>
+            </div>
+            <div class="project-detail-content">
+                <div class="project-modal-visual" id="projectModalVisual"></div>
+                <div class="project-modal-body">
+                    <div class="project-modal-desc">
+                        <h4>Challenge & Objective</h4>
+                        <p id="projectModalChallenge">Challenge text...</p>
+                        
+                        <h4>Solution & System Flow</h4>
+                        <p id="projectModalSolution">Solution text...</p>
+                    </div>
+                    <div class="project-modal-stats">
+                        <div class="stat-box">
+                            <span class="stat-num" id="projectStat1">90%</span>
+                            <span class="stat-lbl" id="projectStat1Lbl">Automation rate</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num" id="projectStat2">35 hrs</span>
+                            <span class="stat-lbl" id="projectStat2Lbl">Saved weekly</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="connect-btn-black full-width" onclick="switchToContactFromProject()">Request a Similar Setup</button>
+        </div>
+    </div>
+
+    <!-- JS Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
