@@ -1,1549 +1,552 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-theme="aurora">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>bakhil. — Systems That Scale</title>
+<title>Akhil Sai Botu — Zoho & AI Automation</title>
+<meta name="description" content="Freelance Zoho developer and AI generalist. I make the boring, repetitive work in your business run on its own.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bakhilsai.github.io/site/">
+<meta property="og:title" content="Akhil Sai Botu — Zoho & AI Automation">
+<meta property="og:description" content="Zoho systems and AI automations that run while you sleep. Available for freelance projects.">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#07070b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%237c5cff'/%3E%3Cstop offset='1' stop-color='%23ff7ad1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%2307070b'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='38' fill='url(%23g)'%3Ea.%3C/text%3E%3C/svg%3E">
+<script>try { const t = localStorage.getItem('palette'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;600;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#050505; --fg:#fff; --red:#FF3B30;
-  --muted:#666; --border:rgba(255,255,255,0.07);
-  --card:#0b0b0b; --card2:#0e0e0e;
-  --bebas:'Bebas Neue',cursive;
-  --inter:'Inter',sans-serif;
-  --hand:'Caveat',cursive;
-}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--fg);font-family:var(--inter);overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-::selection{background:var(--red);color:#fff}
-::-webkit-scrollbar{width:2px}
-::-webkit-scrollbar-thumb{background:var(--red)}
-
-/* ─── NAV ─────────────────────────────── */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 3rem; height:62px;
-  background:rgba(5,5,5,0.8);
-  backdrop-filter:blur(24px) saturate(180%);
-  border-bottom:1px solid var(--border);
-}
-.logo{font-family:var(--inter);font-size:1.35rem;font-weight:700;letter-spacing:-.5px}
-.logo .dot{color:var(--red)}
-.nav-links{display:flex;gap:2.5rem}
-.nav-links a{
-  font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted);transition:color .2s;position:relative;
-}
-.nav-links a::after{
-  content:'';position:absolute;bottom:-2px;left:0;right:100%;
-  height:1px;background:var(--red);transition:right .3s;
-}
-.nav-links a:hover{color:#fff}
-.nav-links a:hover::after{right:0}
-.nav-pill{
-  font-family:var(--hand);font-size:1.2rem;
-  padding:.4rem 1.3rem;
-  border:1px dashed rgba(255,255,255,.18);
-  border-radius:100px;
-  transition:all .25s;
-}
-.nav-pill:hover{border-color:var(--red);color:var(--red)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
-.hamburger span{display:block;width:22px;height:1.5px;background:#fff;transition:all .3s}
-
-/* ─── HERO ───────────────────────────── */
-.hero{
-  min-height:100vh;
-  padding-top:62px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  position:relative;overflow:hidden;
-  border-bottom:1px solid var(--border);
-}
-
-/* Ambient blobs */
-.blob{position:absolute;pointer-events:none;border-radius:50%;filter:blur(120px)}
-.blob1{top:-100px;right:-100px;width:600px;height:600px;background:rgba(255,59,48,.06)}
-.blob2{bottom:-150px;left:5%;width:500px;height:500px;background:rgba(255,59,48,.04)}
-.blob3{top:40%;left:30%;width:300px;height:300px;background:rgba(255,59,48,.02)}
-
-/* ─── HERO LEFT ─── */
-.hero-l{
-  display:flex;flex-direction:column;justify-content:flex-start;
-  padding:4rem 3rem 4rem 3rem;
-  border-right:1px solid var(--border);
-  position:relative;z-index:5;
-}
-
-/* Doodles on left */
-.doodle-wrap{position:absolute;pointer-events:none}
-
-/* Badge */
-.badge{
-  display:inline-flex;align-items:center;gap:.5rem;
-  font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:1.75rem;
-  opacity:0;transform:translateY(16px);
-  animation:fadeUp .6s .15s forwards;
-}
-.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-
-/* Hero Title */
-.hero-title{
-  font-family:var(--bebas);
-  font-size:clamp(5rem,8.5vw,9rem);
-  line-height:.85;letter-spacing:-1px;
-  margin-bottom:2.5rem;
-  position:relative;
-}
-.ht-line{display:block;overflow:hidden}
-.ht-line span{display:inline-block;transform:translateY(110%);animation:slideUp .9s cubic-bezier(.16,1,.3,1) forwards}
-.ht-line:nth-child(1) span{animation-delay:.3s}
-.ht-line:nth-child(2) span{animation-delay:.45s}
-.ht-line:nth-child(3) span{animation-delay:.6s}
-@keyframes slideUp{to{transform:translateY(0)}}
-
-/* Hand-drawn underline under SCALE */
-.ht-line:last-child{position:relative}
-.underline-svg{
-  position:absolute;bottom:-8px;left:0;
-  width:100%;overflow:visible;
-}
-.underline-path{
-  fill:none;stroke:var(--red);stroke-width:2.5;stroke-linecap:round;
-  stroke-dasharray:300;stroke-dashoffset:300;
-  animation:drawLine 1s .9s cubic-bezier(.16,1,.3,1) forwards;
-}
-@keyframes drawLine{to{stroke-dashoffset:0}}
-
-/* Circle doodle around "THAT" */
-.circle-doodle{
-  position:absolute;left:-8px;top:-10px;
-  width:calc(100% + 16px);height:calc(100% + 20px);
-  overflow:visible;pointer-events:none;
-}
-.circle-path{
-  fill:none;stroke:rgba(255,255,255,.12);stroke-width:1.5;stroke-linecap:round;
-  stroke-dasharray:400;stroke-dashoffset:400;
-  animation:drawLine .8s .7s ease forwards;
-}
-
-.hero-sub{
-  font-size:.95rem;color:var(--muted);line-height:1.8;max-width:42ch;
-  margin-bottom:2.5rem;
-  opacity:0;transform:translateY(16px);
-  animation:fadeUp .7s .85s forwards;
-}
-
-.hero-actions{
-  display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;
-  opacity:0;transform:translateY(16px);
-  animation:fadeUp .7s 1s forwards;
-  margin-top:auto;
-}
-.btn-red{
-  display:inline-flex;align-items:center;gap:.6rem;
-  padding:.85rem 2rem;background:var(--red);border-radius:100px;
-  font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  box-shadow:0 4px 30px rgba(255,59,48,.35);
-  transition:all .3s;
-}
-.btn-red:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(255,59,48,.5)}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:.6rem;
-  padding:.85rem 2rem;border:1px solid rgba(255,255,255,.12);border-radius:100px;
-  font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  transition:all .3s;
-}
-.btn-ghost:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.04)}
-
-/* Hand annotation */
-.hand-note{
-  font-family:var(--hand);font-size:1.3rem;color:rgba(255,255,255,.35);
-  display:flex;align-items:flex-start;gap:.4rem;
-  transform:rotate(-4deg);line-height:1.3;
-}
-
-/* Stats row */
-.stats-row{
-  display:flex;gap:1.5rem;
-  opacity:0;transform:translateY(16px);
-  animation:fadeUp .7s 1.15s forwards;
-  width:100%; max-width:500px; justify-content:space-between;
-  border-top:1px solid var(--border); padding-top:2.5rem;
-  margin-top:auto;
-}
-.stat{text-align:center;}
-.stat span:first-child{
-  font-family:var(--bebas);font-size:2.2rem;color:var(--red);
-  line-height:1;display:block;margin-bottom:5px;
-}
-.stat span:last-child{
-  font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--muted);
-}
-
-/* ─── HERO RIGHT (Illustration) ─── */
-.hero-r{
-  position:relative;display:flex;flex-direction:column;align-items:center;
-  justify-content:flex-start;overflow:hidden;
-  padding:4rem 3rem 4rem 3rem; gap: 3rem;
-}
-
-/* Hand-drawn background scribbles */
-.hero-r-bg{
-  position:absolute;inset:0;pointer-events:none;
-  overflow:hidden;z-index:1;
-}
-
-/* Laptop */
-.laptop-container{
-  position:relative;z-index:10;
-  display:flex;flex-direction:column;align-items:center;
-}
-.lc-inner{
-  position:relative;
-  width:320px;
-}
-.ls{
-  width:100%;height:200px;
-  border:1.5px solid rgba(255,255,255,.15);border-bottom:none;
-  border-radius:14px 14px 0 0;background:#070707;
-  display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-  box-shadow:0 0 60px rgba(255,59,48,.06),inset 0 0 40px rgba(0,0,0,.5);
-}
-.ls::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 110%,rgba(255,59,48,.1),transparent 60%);
-}
-.ls-cam{
-  position:absolute;top:8px;left:50%;transform:translateX(-50%);
-  width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.1);
-}
-.zoho-z{display:flex;gap:5px;position:relative;z-index:2;animation:float 4s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.zoho-z span{
-  font-family:var(--bebas);font-size:2.4rem;
-  width:46px;height:46px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-}
-.z1{background:#FF3B30;box-shadow:0 4px 20px rgba(255,59,48,.5)}
-.z2{background:#F1C40F;box-shadow:0 4px 20px rgba(241,196,15,.4)}
-.z3{background:#2ECC71;box-shadow:0 4px 20px rgba(46,204,113,.4)}
-.z4{background:#3498DB;box-shadow:0 4px 20px rgba(52,152,219,.4)}
-.lc-chin{width:108%;margin-left:-4%;height:12px;background:#111;border:1.5px solid rgba(255,255,255,.08);border-top:none;border-radius:0 0 8px 8px}
-.lc-foot{width:50%;margin:0 auto;height:6px;background:#1a1a1a;border-radius:0 0 6px 6px}
-
-/* ── App chips around laptop ── */
-.chip-orbit{
-  position:absolute;inset:-100px;
-  width:calc(100% + 200px);height:calc(100% + 200px);
-  pointer-events:none;
-}
-.app-c{
-  position:absolute;
-  display:flex;flex-direction:column;align-items:center;gap:5px;
-  pointer-events:all;cursor:default;
-  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
-}
-.app-c:hover{transform:scale(1.15) translateY(-4px) !important}
-.app-c:hover .ci{border-color:var(--red);box-shadow:0 8px 30px rgba(255,59,48,.25)}
-.ci{
-  width:46px;height:46px;
-  background:var(--card);
-  border:1px dashed rgba(255,255,255,.18);
-  border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.25rem;
-  transition:all .3s;
-  box-shadow:0 4px 20px rgba(0,0,0,.4);
-}
-.cl{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-
-/* Position each chip */
-.c-crm{top:5%;left:50%;transform:translateX(-200px)}
-.c-ai{top:-5%;left:50%;transform:translateX(-30px)}
-.c-desk{top:5%;right:8%}
-.c-creator{top:50%;left:2%;transform:translateY(-70px)}
-.c-sign{top:50%;right:0;transform:translateY(-70px)}
-.c-analy{bottom:18%;left:8%}
-.c-forms{bottom:18%;right:5%}
-
-/* SVG wires */
-.wires-svg{
-  position:absolute;inset:-100px;
-  width:calc(100% + 200px);height:calc(100% + 200px);
-  pointer-events:none;z-index:5;overflow:visible;
-}
-.wire{
-  stroke:rgba(255,255,255,.07);stroke-width:1;fill:none;
-  stroke-dasharray:6 4;
-}
-.wire-anim{animation:wireDash 8s linear infinite}
-.wire-anim2{animation:wireDash 6s linear infinite reverse}
-.wire-anim3{animation:wireDash 10s linear infinite}
-@keyframes wireDash{to{stroke-dashoffset:-60}}
-
-/* Doodle annotations */
-.doodle-a{
-  position:absolute;pointer-events:none;z-index:8;
-  font-family:var(--hand);color:rgba(255,255,255,.25);
-}
-.doodle-svg-a{position:absolute;pointer-events:none;z-index:8;overflow:visible}
-.draw-path{
-  fill:none;stroke-linecap:round;stroke-linejoin:round;
-  stroke-dasharray:200;stroke-dashoffset:200;
-}
-/* Draw animations with delays */
-.dp1{animation:drawLine 1.2s 1.4s ease forwards}
-.dp2{animation:drawLine 1s 1.6s ease forwards}
-.dp3{animation:drawLine .8s 1.8s ease forwards}
-.dp4{animation:drawLine 1s 2s ease forwards}
-.dp5{animation:drawLine .9s 2.2s ease forwards}
-
-/* AI bot doodle */
-.bot-wrap{
-  position:absolute;top:-75px;left:50%;transform:translateX(-50%);
-  z-index:12;
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-}
-.bot-label{font-family:var(--hand);font-size:1rem;color:rgba(255,255,255,.3)}
-
-/* Stars scattered */
-.star-d{
-  position:absolute;pointer-events:none;z-index:6;
-  color:rgba(255,255,255,.12);font-size:.9rem;
-}
-
-/* ─── HERO RIGHT: Floating Dashboard ─── */
-.dash-scene{
-  margin-top: 3rem;
-  position:relative;width:100%;max-width:480px;
-  perspective:1200px;
-}
-.dash-tilt{
-  transform:rotateX(8deg) rotateY(-12deg);
-  transform-style:preserve-3d;
-  position:relative;
-}
-
-/* glow pulse behind cards */
-.dash-glow{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:300px;height:300px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(255,59,48,.14),transparent 70%);
-  pointer-events:none;
-  animation:glowBreath 4s ease-in-out infinite;
-}
-@keyframes glowBreath{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
-
-/* Base glass card */
-.gc{
-  position:absolute;
-  background:rgba(16,16,18,.85);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;
-  backdrop-filter:blur(20px);
-  box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06);
-  padding:1.25rem;
-  transition:transform .3s, box-shadow .3s;
-}
-
-/* Main big card */
-.gc-main{
-  position:relative;
-  width:100%;
-  padding:1.5rem;
-  border-radius:20px;
-  background:rgba(14,14,16,.92);
-  border:1px solid rgba(255,255,255,.08);
-  backdrop-filter:blur(24px);
-  box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.07);
-  animation:floatMain 6s ease-in-out infinite;
-}
-@keyframes floatMain{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-
-/* Floating cards */
-.gc-a{
-  width:160px;top:-60px;right:-20px;
-  animation:floatA 5s ease-in-out infinite;
-}
-@keyframes floatA{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
-
-.gc-b{
-  width:140px;bottom:-55px;right:10px;
-  animation:floatB 7s ease-in-out infinite;
-}
-@keyframes floatB{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-12px) rotate(-1.5deg)}}
-
-.gc-c{
-  width:150px;top:10%;left:-30px;
-  animation:floatC 5.5s ease-in-out 1s infinite;
-}
-@keyframes floatC{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(-2deg)}}
-
-.gc-d{
-  width:170px;bottom:-70px;left:-20px;
-  animation:floatD 6.5s ease-in-out .5s infinite;
-}
-@keyframes floatD{0%,100%{transform:translateY(0) rotate(1deg)}50%{transform:translateY(-10px) rotate(1deg)}}
-
-/* Card internal styles */
-.gc-label{
-  font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:.6rem;
-}
-.gc-val{font-family:var(--bebas);font-size:1.8rem;line-height:1;color:#fff}
-.gc-sub{font-size:.65rem;color:var(--muted);margin-top:.2rem}
-.gc-red{color:var(--red)}
-
-/* Live dot */
-.live{display:flex;align-items:center;gap:.4rem;font-size:.65rem;color:var(--muted);margin-bottom:.75rem}
-.live-d{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 2s infinite;flex-shrink:0}
-
-/* Chart SVG inside main card */
-.chart-wrap{margin:1rem 0;position:relative}
-.chart-label{display:flex;justify-content:space-between;margin-bottom:.5rem}
-.chart-label span{font-size:.62rem;color:var(--muted)}
-
-/* Stats row in main card */
-.stats-mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-top:1.1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.05)}
-.sm-item{display:flex;flex-direction:column;gap:.15rem}
-.sm-v{font-family:var(--bebas);font-size:1.4rem;line-height:1}
-.sm-l{font-size:.58rem;color:var(--muted);letter-spacing:.08em}
-
-/* Ring progress */
-.ring-wrap{display:flex;align-items:center;justify-content:center;gap:.75rem}
-.ring-label h4{font-family:var(--bebas);font-size:1.4rem;margin-bottom:2px}
-.ring-label p{font-size:.62rem;color:var(--muted)}
-
-/* Notification toast */
-.toast{
-  display:flex;align-items:center;gap:.6rem;
-  font-size:.7rem;color:rgba(255,255,255,.7);
-}
-.toast-ico{
-  width:26px;height:26px;border-radius:8px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.85rem;
-}
-.toast-ico.red{background:rgba(255,59,48,.15)}
-.toast-ico.green{background:rgba(46,204,113,.12)}
-.toast-ico.blue{background:rgba(52,152,219,.12)}
-.toast-t{font-weight:600;font-size:.72rem;color:#fff}
-.toast-s{font-size:.62rem;color:var(--muted)}
-
-/* Architecture Grid */
-.arch-grid{display:flex;gap:1rem;margin-top:.75rem}
-.ag-col{display:flex;flex-direction:column;gap:.35rem;flex:1}
-.ag-head{font-size:.55rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.3);margin-bottom:.15rem;text-align:center}
-.ag-node{
-  font-size:.65rem;font-weight:500;padding:.35rem;
-  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);
-  border-radius:6px;color:var(--muted);text-align:center;
-}
-.ag-node.hl{color:#fff;border-color:rgba(255,59,48,.4);background:rgba(255,59,48,.08)}
-
-/* Slide-in toast animation */
-@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-
-/* Fade up entry for whole scene */
-.dash-scene{opacity:0;transform:translateY(20px);animation:dashEntry .8s 1.2s cubic-bezier(.16,1,.3,1) forwards}
-@keyframes dashEntry{to{opacity:1;transform:translateY(0)}}
-
-/* ─── TEXT MARQUEE ──────────────────────── */
-.skill-strip{
-  padding:1.25rem 0;
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  background:#080808;
-  overflow:hidden;
-  display:flex;
-  white-space:nowrap;
-}
-.ss-row{
-  display:flex;
-  align-items:center;
-  gap:1.5rem;
-  width:max-content;
-  animation:ssLeft 30s linear infinite;
-  padding-left:1.5rem;
-}
-.skill-strip:hover .ss-row { animation-play-state:paused; }
-@keyframes ssLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-.ss-text {
-  font-family:var(--bebas);
-  font-size:1.8rem;
-  letter-spacing:1px;
-  color:rgba(255,255,255,0.7);
-  display:flex;
-  align-items:center;
-  gap:1.5rem;
-}
-.ss-text span {
-  color:var(--red);
-  font-size:1.4rem;
-}
-
-.lc-only{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:44px;height:44px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.07);
-  background:rgba(255,255,255,.03);
-  transition:all .25s;
-  cursor:default;
-  flex-shrink:0;
-}
-.lc-only:hover{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.07);transform:translateY(-3px) scale(1.08)}
-.lc-only img{
-  width:28px;height:28px;
-  object-fit:contain;
-  display:block;
-}
-
-
-/* ─── BENTO SECTIONS ─────────────────── */
-.section-divider{
-  display:flex;align-items:center;gap:1.5rem;
-  padding:3.5rem 3rem 2rem;
-}
-.sd-num{
-  font-family:var(--bebas);font-size:1rem;letter-spacing:.2em;
-  color:var(--red);border:1px solid rgba(255,59,48,.2);
-  padding:.2rem .75rem;border-radius:100px;
-}
-.sd-title{
-  font-family:var(--bebas);font-size:2rem;letter-spacing:1px;
-}
-.sd-line{flex:1;height:1px;background:linear-gradient(to right,rgba(255,255,255,.07),transparent)}
-.sd-hand{font-family:var(--hand);font-size:1.1rem;color:rgba(255,255,255,.18);transform:rotate(-3deg)}
-
-/* Bento grid */
-.bento{
-  padding:0 3rem 3rem;
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:.85rem;
-}
-
-/* Card base */
-.bc{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:1.75rem;
-  position:relative;overflow:hidden;
-  transition:border-color .4s,transform .4s;
-}
-.bc:hover{border-color:rgba(255,255,255,.11)}
-/* 3D tilt applied by JS */
-
-/* Top color bar */
-.tc{position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .35s;border-radius:20px 20px 0 0}
-.bc:hover .tc{opacity:1}
-.tc-red{background:linear-gradient(to right,var(--red),transparent)}
-.tc-blue{background:linear-gradient(to right,#3498DB,transparent)}
-.tc-green{background:linear-gradient(to right,#2ECC71,transparent)}
-.tc-purple{background:linear-gradient(to right,#9B59B6,transparent)}
-.tc-yellow{background:linear-gradient(to right,#F1C40F,transparent)}
-.tc-teal{background:linear-gradient(to right,#1ABC9C,transparent)}
-
-/* Watermark */
-.wm{
-  position:absolute;right:-15px;bottom:-20px;
-  font-family:var(--bebas);font-size:7rem;
-  color:rgba(255,255,255,.022);pointer-events:none;line-height:1;user-select:none;
-}
-
-/* Spans */
-.s5{grid-column:span 5}
-.s7{grid-column:span 7}
-.s4{grid-column:span 4}
-.s6{grid-column:span 6}
-.s8{grid-column:span 8}
-.s12{grid-column:span 12}
-.s3{grid-column:span 3}
-
-/* btag */
-.btag{
-  font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--red);background:rgba(255,59,48,.08);
-  padding:.18rem .65rem;border-radius:100px;display:inline-block;margin-bottom:1rem;
-}
-.btitle{font-family:var(--bebas);font-size:1.5rem;letter-spacing:1px;margin-bottom:1.25rem}
-
-/* ─── EXP ─── */
-.exp-cards{display:flex;flex-direction:column;gap:1.1rem}
-.ec{
-  padding:1.25rem;background:rgba(255,255,255,.02);
-  border:1px solid var(--border);border-radius:14px;
-  position:relative;overflow:hidden;transition:all .3s;
-}
-.ec::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--red);border-radius:2px;transform:scaleY(0);transition:transform .3s;transform-origin:bottom}
-.ec:hover::before{transform:scaleY(1)}
-.ec:hover{border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
-.ec-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem}
-.ec-role{font-size:.9rem;font-weight:600}
-.ec-co{font-size:.73rem;color:var(--muted);margin-top:2px}
-.ec-date{font-size:.6rem;color:var(--red);font-family:monospace}
-.pts{list-style:none;display:flex;flex-direction:column;gap:.4rem}
-.pts li{font-size:.76rem;color:var(--muted);padding-left:.95rem;position:relative;line-height:1.5}
-.pts li::before{content:'▸';position:absolute;left:0;color:var(--red);font-size:.62rem;top:2px}
-.pts b{color:rgba(255,255,255,.75);font-weight:500}
-
-/* ─── FEAT ─── */
-.feat-stack{display:flex;flex-direction:column;gap:.85rem;height:100%;justify-content:center}
-.fi{
-  display:flex;align-items:flex-start;gap:.8rem;
-  padding:1rem;background:rgba(255,255,255,.02);
-  border:1px solid var(--border);border-radius:12px;
-  transition:all .25s;position:relative;overflow:hidden;
-}
-.fi:hover{border-color:rgba(255,255,255,.1);transform:translateX(5px)}
-.fi-ico{font-size:1.1rem;flex-shrink:0;margin-top:1px}
-.fi h5{font-size:.8rem;font-weight:600;margin-bottom:2px}
-.fi p{font-size:.68rem;color:var(--muted);line-height:1.4}
-
-/* ─── SKILLS ─── */
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
-.sg-head{
-  font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--red);margin-bottom:.85rem;font-weight:600;
-}
-.tags-flow{display:flex;flex-wrap:wrap;gap:.4rem}
-.tag{
-  font-size:.68rem;padding:.3rem .8rem;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--border);
-  border-radius:100px;color:var(--muted);
-  cursor:default;transition:all .2s;
-  animation:tagIn .4s both;
-}
-.tag:hover{background:rgba(255,59,48,.1);border-color:rgba(255,59,48,.3);color:#fff;transform:translateY(-1px)}
-@keyframes tagIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-
-/* ─── PROJ ─── */
-.pi{height:100%;display:flex;flex-direction:column;position:relative}
-.pi-ey{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
-.pi-name{font-size:1rem;font-weight:700;margin-bottom:.6rem;line-height:1.25}
-.pi-desc{font-size:.76rem;color:var(--muted);line-height:1.65;flex:1}
-.pi-stack{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:1rem}
-.ptag{font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .55rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:100px;color:var(--muted)}
-.pi-num{position:absolute;bottom:.75rem;right:1rem;font-family:var(--bebas);font-size:4rem;color:rgba(255,255,255,.04);line-height:1;pointer-events:none;transition:color .3s}
-.bc:hover .pi-num{color:rgba(255,59,48,.06)}
-
-/* Featured project */
-.pi-feat{flex-direction:row;gap:2.5rem;align-items:center}
-.pi-feat .pi-l{flex:1}
-.pi-feat .pi-r{width:180px;flex-shrink:0}
-.pi-chart{
-  width:100%;height:110px;
-  border:1px dashed rgba(255,255,255,.08);border-radius:12px;
-  padding:1rem;overflow:hidden;position:relative;
-}
-
-/* ─── EDU ─── */
-.edu-item{
-  display:flex;gap:1.5rem;align-items:flex-start;
-  padding:1.25rem;background:rgba(255,255,255,.02);
-  border:1px solid var(--border);border-radius:14px;
-  transition:all .3s;
-}
-.edu-item:hover{border-color:rgba(255,255,255,.1)}
-.edu-yr{
-  font-family:var(--bebas);font-size:1.3rem;color:var(--red);
-  flex-shrink:0;border:1px solid rgba(255,59,48,.2);
-  padding:.2rem .85rem;border-radius:100px;align-self:flex-start;
-}
-.edu-h{font-size:.9rem;font-weight:600;margin-bottom:.3rem}
-.edu-s{font-size:.75rem;color:var(--muted)}
-.edu-badges{display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap}
-.edu-badge{
-  font-size:.65rem;padding:.2rem .6rem;
-  background:rgba(255,59,48,.08);border:1px solid rgba(255,59,48,.2);
-  border-radius:100px;color:var(--red);
-}
-
-/* ─── CERTS ─── */
-.cert-list{display:flex;flex-direction:column;gap:.6rem}
-.cert-r{
-  display:flex;align-items:center;gap:.75rem;
-  padding:.75rem 1rem;
-  background:rgba(255,255,255,.02);border:1px solid var(--border);
-  border-radius:10px;font-size:.78rem;color:var(--muted);
-  transition:all .25s;
-}
-.cert-r:hover{border-color:rgba(255,255,255,.1);color:#fff}
-.cert-r .star{color:var(--red);font-size:.9rem}
-
-/* ─── INTERESTS ─── */
-.int-grid{display:flex;flex-wrap:wrap;gap:.65rem}
-.int-chip{
-  display:flex;align-items:center;gap:.5rem;
-  padding:.5rem 1.2rem;
-  border:1px dashed rgba(255,255,255,.1);border-radius:100px;
-  font-size:.78rem;color:var(--muted);transition:all .25s;
-}
-.int-chip:hover{border-color:var(--red);color:#fff;transform:translateY(-2px)}
-.int-chip .arr{color:var(--red)}
-
-/* ─── PREMIUM SKILLS SECTION ─── */
-.premium-skills {
-  position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 30px;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
-  padding: 4rem;
-  margin: 2rem 1.5rem 6rem;
-  overflow: hidden;
-  backdrop-filter: blur(20px);
-}
-
-/* Doodles */
-.ps-doodle {
-  position: absolute;
-  color: #fff;
-  opacity: 0.15;
-  pointer-events: none;
-}
-.doodle-airplane { width: 36px; height: 36px; top: 10%; right: 10%; transform: rotate(-15deg); }
-.doodle-rocket { width: 40px; height: 40px; top: 40%; right: 4%; transform: rotate(15deg); }
-.doodle-code { width: 32px; height: 32px; bottom: 18%; left: 32%; transform: rotate(-8deg); }
-.doodle-gear { width: 38px; height: 38px; bottom: 8%; right: 28%; animation: spin 20s linear infinite; }
-@keyframes spin { 100% { transform: rotate(360deg); } }
-.doodle-arrow { width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-left: 6px; transform: rotate(15deg); }
-
-/* Header */
-.ps-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 4rem;
-}
-.ps-badge {
-  display: inline-block;
-  background: rgba(255, 92, 77, 0.1);
-  color: #FF5C4D;
-  padding: 0.4rem 1.2rem;
-  border-radius: 100px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  border: 1px solid rgba(255, 92, 77, 0.2);
-  margin-bottom: 1.5rem;
-}
-.ps-title {
-  font-family: var(--bebas);
-  font-size: 4rem;
-  color: #fff;
-  line-height: 1;
-  letter-spacing: 1px;
-}
-.ps-mastered {
-  font-family: var(--hand);
-  font-size: 1.2rem;
-  color: #9A9A9A;
-  opacity: 0.7;
-  transform: rotate(-3deg);
-  margin-top: 1rem;
-}
-
-/* Grid */
-.ps-grid {
-  display: grid;
-  grid-template-columns: 2.2fr 1fr 1fr 1.2fr;
-  gap: 2.5rem;
-  margin-bottom: 5rem;
-}
-.ps-col {
-  border-right: 1px dashed rgba(255, 255, 255, 0.05);
-  padding-right: 2.5rem;
-  position: relative;
-}
-.ps-col-last {
-  border-right: none;
-  padding-right: 0;
-}
-.ps-col-head {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: #E0E0E0;
-  margin-bottom: 2.5rem;
-}
-.ps-col-head svg {
-  width: 18px;
-  height: 18px;
-  color: #FF5C4D;
-}
-
-/* Pills */
-.ps-pills {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.ps-pills.zoho-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-}
-.ps-pill {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  height: 44px;
-  background: #0f1012;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 12px;
-  padding: 0 1rem;
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: #E0E0E0;
-  letter-spacing: 0.02em;
-  transition: all 0.3s ease;
-  cursor: default;
-}
-.ps-pill img, .ps-pill svg {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-}
-.z-ico {
-  width: 18px !important;
-  height: 18px !important;
-  object-fit: cover !important;
-  object-position: left center !important;
-}
-.ps-pill:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(255, 92, 77, 0.15);
-  color: #fff;
-}
-
-/* Bottom */
-.ps-bot {
-  position: absolute;
-  bottom: -22px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  background: #18191c;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 0.8rem 1.8rem;
-  border-radius: 100px;
-  font-size: 0.85rem;
-  color: #9A9A9A;
-  z-index: 10;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-}
-
-@media (max-width: 1024px) {
-  .ps-grid { grid-template-columns: repeat(2, 1fr); }
-  .ps-col { border-right: none; padding-right: 0; }
-  .ps-bot { bottom: 1rem; position: relative; left: 0; transform: none; display: flex; justify-content: center; margin-top: 2rem;}
-}
-@media (max-width: 768px) {
-  .premium-skills { padding: 2rem 1.5rem 5rem; margin: 2rem 1rem 4rem; border-radius: 20px; }
-  .ps-header { flex-direction: column; gap: 2rem; }
-  .ps-title { font-size: 3rem; }
-  .ps-grid { grid-template-columns: 1fr; gap: 4rem; }
-  .zoho-grid { display: flex !important; flex-wrap: wrap !important; }
-  .zoho-grid .ps-pill { grid-column: auto !important; }
-  .ps-bot { width: 90%; justify-content: center; text-align: center; font-size: 0.75rem; bottom: 1.5rem; }
-}
-/* ─── SCROLL REVEAL ─────────────────── */
-.rev{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
-.rev.in{opacity:1;transform:translateY(0)}
-.rev-l{opacity:0;transform:translateX(-30px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
-.rev-l.in{opacity:1;transform:translateX(0)}
-.rev-r{opacity:0;transform:translateX(30px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1)}
-.rev-r.in{opacity:1;transform:translateX(0)}
-
-/* ─── FOOTER ─────────────────────────── */
-footer{
-  border-top:1px solid var(--border);
-  padding:5rem 3rem 3rem;position:relative;overflow:hidden;
-}
-footer::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--red),transparent);
-}
-.fg{display:grid;grid-template-columns:1.2fr 1fr .8fr;gap:3rem;align-items:start;margin-bottom:4rem}
-.fh{font-family:var(--bebas);font-size:clamp(2.5rem,4vw,4.5rem);line-height:.9;letter-spacing:-1px}
-.fhand{font-family:var(--hand);font-size:1.2rem;color:rgba(255,255,255,.2);margin-top:1.25rem;transform:rotate(-2.5deg);display:inline-block}
-.fp{font-size:.85rem;color:var(--muted);line-height:1.8;margin-bottom:1.5rem}
-.f-right{display:flex;flex-direction:column;align-items:flex-end;gap:1.25rem}
-.f-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.f-ics{display:flex;gap:.65rem}
-.fic{
-  width:42px;height:42px;background:var(--card2);
-  border:1px solid var(--border);border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--muted);transition:all .25s;
-}
-.fic:hover{border-color:var(--red);color:var(--red);transform:translateY(-3px)}
-.fbot{
-  display:flex;justify-content:space-between;align-items:center;
-  padding-top:2rem;border-top:1px solid var(--border);
-  font-size:.7rem;color:var(--muted);
-}
-.fbot a{color:var(--muted)}.fbot a:hover{color:var(--red)}
-
-/* ─── RESPONSIVE ─────────────────────── */
-@media(max-width:1100px){
-  .hero{grid-template-columns:1fr}
-  .hero-l{border-right:none;border-bottom:1px solid var(--border)}
-  .skills-grid{grid-template-columns:repeat(2,1fr)}
-  .bento{grid-template-columns:repeat(6,1fr)}
-  .s5,.s7,.s6,.s4,.s8{grid-column:span 6}
-  .s3{grid-column:span 3}
-  .s12{grid-column:span 6}
-  .pi-feat{flex-direction:column;gap:1.5rem}
-  .pi-feat .pi-r{width:100%}
-  .fg{grid-template-columns:1fr}
-  .f-right{align-items:flex-start}
-}
-@media(max-width:768px){
-  .nav{padding:0 1.5rem}
-  .nav-links,.nav-pill{display:none}
-  .nav-links.active{
-    display:flex;flex-direction:column;
-    position:absolute;top:62px;left:0;right:0;
-    background:rgba(5,5,5,0.95);backdrop-filter:blur(24px);
-    padding:2rem;border-bottom:1px solid var(--border);gap:1.5rem;text-align:center;
-  }
-  .hamburger{display:flex}
-  .hero-l{padding:3rem 1.5rem}
-  .hero-title{font-size:clamp(3.5rem,14vw,6rem)}
-  .bento{padding:0 1.5rem 2rem;grid-template-columns:1fr}
-  .bento .s3,.s4,.s5,.s6,.s7,.s8,.s12{grid-column:span 1}
-  .section-divider{padding:2.5rem 1.5rem 1.5rem}
-  .skills-grid{grid-template-columns:1fr 1fr}
-  footer{padding:3rem 1.5rem 2rem}
-  .fbot{flex-direction:column;gap:.5rem;text-align:center}
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="logo">bakhil<span class="dot">.</span></div>
-  <div class="nav-links">
-    <a href="#exp">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <a href="mailto:akhilsaibotu@gmail.com" class="nav-pill">let's talk ↗</a>
-  <button class="hamburger" id="ham" style="color:#fff;font-size:1.3rem;background:none;border:none;cursor:pointer">☰</button>
-</nav>
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Home">akhil<span>.</span></a>
+  <nav class="nav-links" aria-label="Main">
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#process">Process</a>
+    <a href="#about">About</a>
+  </nav>
+  <a href="#contact" class="btn btn-sm btn-accent magnetic">Let's talk</a>
+</header>
 
-<!-- ════════ HERO ════════ -->
-<section class="hero">
+<main id="top">
 
-
-  <!-- LEFT -->
-  <div class="hero-l">
-    <div class="badge"><div class="badge-dot"></div> Zoho Developer | AI Generalist | Business Analyst</div>
-
-    <h1 class="hero-title">
-      <div class="ht-line"><span>BUILDING</span></div>
-      <div class="ht-line"><span>SYSTEMS</span></div>
-      <div class="ht-line" style="position:relative">
-        <span>THAT&nbsp;</span><span style="color:var(--red)">SCALE.</span>
-        <svg class="underline-svg" viewBox="0 0 300 12">
-          <path class="underline-path" d="M2 6 Q75 10 150 5 T298 7" stroke="var(--red)"/>
-        </svg>
-      </div>
-    </h1>
-
-    <p class="hero-sub">Zoho Developer & CRM Lead helping businesses automate operations, connect applications, and build AI-powered workflows that save time and drive growth.</p>
-
-    <div class="hero-actions">
-      <a href="#projects" class="btn-red">See Projects ↗</a>
-      <a href="#exp" class="btn-ghost">My Experience</a>
-      <div class="hand-note">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 4Q12 14 4 20M4 20h7M4 20v-7" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linecap="round"/></svg>
-        real results<br>real impact
-      </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <canvas id="fx"></canvas>
+      <canvas id="brain"></canvas>
+      <div class="spot"></div>
     </div>
 
-  </div>
+    <div class="wrap hero-inner">
+      <h1 class="hero-title" aria-label="Your business, on autopilot.">
+        <span class="line"><span style="--i:0">Your <span class="rot"><span class="rot-w">business</span></span>,</span></span>
+        <span class="line"><span style="--i:1">on <em>autopilot.</em></span></span>
+      </h1>
+      <p class="hero-sub">Zoho Developer <i>|</i> AI Generalist</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-accent magnetic">Start a project <span class="arr">→</span></a>
+        <a href="#work" class="btn btn-ghost magnetic">See my work</a>
+      </div>
 
-  <!-- RIGHT: Premium Floating Dashboard -->
-  <div class="hero-r">
-    <div class="dash-scene">
-      <div class="dash-glow"></div>
-      <div class="dash-tilt">
+    </div>
 
-        <!-- Main Analytics Card -->
-        <div class="gc-main">
-          <div class="live"><div class="live-d"></div> Live · Zoho Systems Active</div>
+    <a href="#intro" class="scroll-cue" aria-label="Scroll down"><span></span></a>
+  </section>
 
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.25rem">
-            <div>
-              <div style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">Automation Performance</div>
-              <div style="font-family:var(--bebas);font-size:2.2rem;line-height:1.1;margin-top:.2rem">98.5% <span style="font-size:1rem;color:#2ECC71">↑</span></div>
-            </div>
-            <div style="text-align:right">
-              <div style="font-size:.62rem;color:var(--muted)">vs last month</div>
-              <div style="font-family:var(--hand);font-size:1.1rem;color:rgba(255,59,48,.7);transform:rotate(3deg);display:inline-block">+12.4%</div>
-            </div>
+  <!-- INTRO: plain words -->
+  <section class="intro" id="intro">
+    <div class="wrap">
+      <p class="stmt">Nobody likes doing the exact same manual task 5+ times a day. <span class="hi">I'm Akhil,</span> and I build Zoho and AI automations that handle the busywork in the background so you can get your day back.</p>
+      <dl class="stats">
+        <div data-reveal><dt><span data-count="2">2</span>+</dt><dd>Years building business systems</dd></div>
+        <div data-reveal><dt><span data-count="14">14</span>+</dt><dd>Zoho apps implemented</dd></div>
+        <div data-reveal><dt><span data-count="6">6</span></dt><dd>Systems shipped to production</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- LIVE EXAMPLE: one automation running on its own, step by step -->
+  <section class="section example" id="example">
+    <div class="wrap">
+      <div class="sec-head sec-center" data-reveal>
+        <p class="eyebrow">Live example</p>
+        <h2>This is what <em>automation</em> looks like</h2>
+        <p class="sec-note">A new customer enquiry, handled from start to finish while your team does something else.</p>
+      </div>
+    </div>
+    <div class="wrap demo-wrap">
+      <div class="demo" aria-label="Example: an automation that handles a new enquiry from start to finish">
+        <div class="demo-bar">
+          <span class="dots3"><i></i><i></i><i></i></span>
+          <span class="demo-title"><span class="live"></span>New enquiry flow <b>· running</b></span>
+          <span class="demo-runs">Example workflow · <b class="runs">0</b> <span class="runs-l">runs</span></span>
+        </div>
+        <div class="flow">
+          <div class="node">
+            <span class="n-ico"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span>
+            <span class="n-k">Trigger</span>
+            <span class="n-t">New enquiry</span>
+            <span class="n-s">from your website</span>
+            <span class="n-ok"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>
           </div>
-
-          <!-- Area Chart -->
-          <div class="chart-wrap">
-            <div class="chart-label"><span>Jan</span><span>Mar</span><span>May</span><span>Jun</span></div>
-            <svg width="100%" height="90" viewBox="0 0 300 90" preserveAspectRatio="none" fill="none">
-              <defs>
-                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="rgba(255,59,48,.35)"/>
-                  <stop offset="100%" stop-color="rgba(255,59,48,0)"/>
-                </linearGradient>
-              </defs>
-              <!-- Grid lines -->
-              <line x1="0" y1="22" x2="300" y2="22" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-              <line x1="0" y1="45" x2="300" y2="45" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-              <line x1="0" y1="68" x2="300" y2="68" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-              <!-- Area fill -->
-              <path d="M0 75 C30 75 40 60 60 55 S100 45 130 38 S180 25 210 20 S260 15 300 10 L300 90 L0 90 Z" fill="url(#chartGrad)"/>
-              <!-- Line -->
-              <path d="M0 75 C30 75 40 60 60 55 S100 45 130 38 S180 25 210 20 S260 15 300 10" stroke="var(--red)" stroke-width="2" stroke-linecap="round"/>
-              <!-- Dot at end -->
-              <circle cx="300" cy="10" r="4" fill="var(--red)"/>
-              <circle cx="300" cy="10" r="8" fill="rgba(255,59,48,.2)"/>
-              <!-- Tooltip marker -->
-              <line x1="210" y1="20" x2="210" y2="90" stroke="rgba(255,255,255,.06)" stroke-width="1" stroke-dasharray="3 2"/>
-              <circle cx="210" cy="20" r="3" fill="rgba(255,255,255,.5)"/>
-            </svg>
+          <span class="conn"><i></i></span>
+          <div class="node">
+            <span class="n-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>
+            <span class="n-k">Zoho CRM</span>
+            <span class="n-t">Lead created</span>
+            <span class="n-s">assigned to sales</span>
+            <span class="n-ok"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>
           </div>
-
-          <!-- Mini stats row -->
-          <div class="stats-mini">
-            <div class="sm-item"><div class="sm-v gc-red">14+</div><div class="sm-l">Zoho Apps</div></div>
-            <div class="sm-item"><div class="sm-v">6+</div><div class="sm-l">Projects</div></div>
-            <div class="sm-item"><div class="sm-v" style="color:#2ECC71">∞</div><div class="sm-l">Automations</div></div>
+          <span class="conn"><i></i></span>
+          <div class="node node-ai">
+            <span class="n-ico"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
+            <span class="n-k">AI agent</span>
+            <span class="n-t">Reply written</span>
+            <span class="n-s">personal &amp; on-brand</span>
+            <span class="n-ok"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>
+          </div>
+          <span class="conn"><i></i></span>
+          <div class="node">
+            <span class="n-ico"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg></span>
+            <span class="n-k">Zoho Books</span>
+            <span class="n-t">Quote sent</span>
+            <span class="n-s">PDF attached</span>
+            <span class="n-ok"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>
+          </div>
+          <span class="conn"><i></i></span>
+          <div class="node">
+            <span class="n-ico"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+            <span class="n-k">Dashboard</span>
+            <span class="n-t">Report updated</span>
+            <span class="n-s">live numbers</span>
+            <span class="n-ok"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>
           </div>
         </div>
-
-        <!-- Floating Card A: Active workflows -->
-        <div class="gc gc-a">
-          <div class="gc-label">Workflows</div>
-          <div class="gc-val gc-red">∞</div>
-          <div class="gc-sub">Active right now</div>
-          <!-- Mini bar chart -->
-          <div style="display:flex;align-items:flex-end;gap:3px;margin-top:.75rem;height:28px">
-            <div style="flex:1;background:rgba(255,59,48,.15);border-radius:2px 2px 0 0;height:40%"></div>
-            <div style="flex:1;background:rgba(255,59,48,.25);border-radius:2px 2px 0 0;height:65%"></div>
-            <div style="flex:1;background:rgba(255,59,48,.2);border-radius:2px 2px 0 0;height:50%"></div>
-            <div style="flex:1;background:rgba(255,59,48,.35);border-radius:2px 2px 0 0;height:80%"></div>
-            <div style="flex:1;background:rgba(255,59,48,.3);border-radius:2px 2px 0 0;height:70%"></div>
-            <div style="flex:1;background:var(--red);border-radius:2px 2px 0 0;height:100%"></div>
-          </div>
+        <div class="demo-foot">
+          <span>Time spent by your team: <b>0 min</b></span>
+          <span class="toast" aria-live="off"></span>
         </div>
-
-        <!-- Floating Card B: Security -->
-        <div class="gc gc-b">
-          <div class="gc-label">Security Posture</div>
-          <div class="ring-wrap" style="margin-top:.5rem;display:flex;align-items:center;gap:.75rem">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <path d="M9 12l2 2 4-4"/>
-            </svg>
-            <div class="ring-label">
-              <h4 style="color:#2ECC71">Protected</h4>
-              <p>EDR & SIEM active</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Floating Card C: Notification -->
-        <div class="gc gc-c">
-          <div class="gc-label" style="margin-bottom:.5rem">Recent</div>
-          <div class="toast" style="animation:toastIn .5s 2s both">
-            <div class="toast-ico green">✓</div>
-            <div><div class="toast-t">CRM Synced</div><div class="toast-s">2s ago · 847 records</div></div>
-          </div>
-          <div style="height:.5rem"></div>
-          <div class="toast" style="animation:toastIn .5s 2.3s both">
-            <div class="toast-ico red">⚡</div>
-            <div><div class="toast-t">Flow triggered</div><div class="toast-s">Lead assigned</div></div>
-          </div>
-        </div>
-
-        <!-- Floating Card D: Architecture -->
-        <div class="gc gc-d">
-          <div class="gc-label">Architecture</div>
-          <div class="arch-grid">
-            <div class="ag-col">
-              <div class="ag-head">Data In</div>
-              <div class="ag-node">Webhooks</div>
-              <div class="ag-node hl">n8n</div>
-              <div class="ag-node">Database</div>
-            </div>
-            <div class="ag-col">
-              <div class="ag-head">Data Out</div>
-              <div class="ag-node">APIs</div>
-              <div class="ag-node hl" style="border-color:rgba(242,200,17,.4);background:rgba(242,200,17,.08)">Power BI</div>
-              <div class="ag-node">Reports</div>
-            </div>
-          </div>
-          <!-- Doodle annotation -->
-          <div style="font-family:var(--hand);font-size:.95rem;color:rgba(255,255,255,.18);margin-top:1rem;transform:rotate(-2deg);display:block;text-align:center">systems linked ✦</div>
-        </div>
-
       </div>
     </div>
-    
-    <!-- Stats Row moved to right side -->
-    <div class="stats-row">
-      <div class="stat"><span>14+</span><span>Zoho Apps</span></div>
-      <div class="stat"><span>6+</span><span>Projects</span></div>
-      <div class="stat"><span>2+</span><span>Years Exp.</span></div>
-      <div class="stat"><span>∞</span><span>Automations</span></div>
+  </section>
+
+  <!-- TOOLS MARQUEE -->
+  <div class="marquee" aria-label="Tools I work with">
+    <div class="marquee-track">
+      <ul>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm.svg" alt="">CRM</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" alt="">Creator</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/books.svg" alt="">Books</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/people.svg" alt="">People</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/payroll.svg" alt="">Payroll</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/flow.svg" alt="">Flow</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/analytics.svg" alt="">Analytics</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/desk.svg" alt="">Desk</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/sign.svg" alt="">Sign</li>
+        <li><span class="dot-i"></span>Python</li>
+        <li><span class="dot-i"></span>n8n</li>
+        <li><span class="dot-i"></span>Power BI</li>
+        <li><span class="dot-i"></span>AI Agents</li>
+        <li><span class="dot-i"></span>RAG</li>
+      </ul>
+      <ul aria-hidden="true">
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm.svg" alt="">CRM</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" alt="">Creator</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/books.svg" alt="">Books</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/people.svg" alt="">People</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/payroll.svg" alt="">Payroll</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/flow.svg" alt="">Flow</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/analytics.svg" alt="">Analytics</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/desk.svg" alt="">Desk</li>
+        <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/sign.svg" alt="">Sign</li>
+        <li><span class="dot-i"></span>Python</li>
+        <li><span class="dot-i"></span>n8n</li>
+        <li><span class="dot-i"></span>Power BI</li>
+        <li><span class="dot-i"></span>AI Agents</li>
+        <li><span class="dot-i"></span>RAG</li>
+      </ul>
     </div>
   </div>
-</section>
 
-<!-- TEXT MARQUEE SCROLLER -->
-<div class="skill-strip">
-  <div class="ss-row">
-    <!-- Set 1 -->
-    <div class="ss-text">
-      AI Agents <span>|</span> RAG Pipeline <span>|</span> ETL <span>|</span> Zoho One <span>|</span> System Architecture <span>|</span> Data Analytics <span>|</span> Business Automation <span>|</span> AI Agents <span>|</span> RAG Pipeline <span>|</span> ETL <span>|</span> Zoho One <span>|</span> System Architecture <span>|</span> Data Analytics <span>|</span> Business Automation <span>|</span>
-    </div>
-    <!-- Set 2 for seamless scrolling -->
-    <div class="ss-text">
-      AI Agents <span>|</span> RAG Pipeline <span>|</span> ETL <span>|</span> Zoho One <span>|</span> System Architecture <span>|</span> Data Analytics <span>|</span> Business Automation <span>|</span> AI Agents <span>|</span> RAG Pipeline <span>|</span> ETL <span>|</span> Zoho One <span>|</span> System Architecture <span>|</span> Data Analytics <span>|</span> Business Automation <span>|</span>
-    </div>
-  </div>
-</div>
-<!-- ════ EXPERIENCE ════ -->
-<div class="section-divider rev" id="exp">
-  <div class="sd-num">01</div>
-  <div class="sd-title">EXPERIENCE</div>
-  <div class="sd-line"></div>
-  <div class="sd-hand">where I've built ✦</div>
-</div>
-<div class="bento">
-  <div class="bc s7 rev-l">
-    <div class="tc tc-red"></div>
-    <div class="wm">EXP</div>
-    <div class="btag">Work History</div>
-    <div class="btitle">ROLES I'VE HELD</div>
-    <div class="exp-cards">
-      <div class="ec">
-        <div class="ec-head"><div><div class="ec-role">Software Developer</div><div class="ec-co">ACER Credit Rating Pvt. Ltd</div></div><div class="ec-date">01/2026 – Present</div></div>
-        <ul class="pts">
-          <li><b>Zoho Org Setup:</b> Full implementation across HR (People, Recruit), Finance (Books, Payroll, Expense) &amp; Ops (CRM, Creator, Sign, Flow).</li>
-          <li><b>Cybersecurity:</b> Deployed EDR &amp; SIEM; built complete Disaster Recovery plan for Zoho environment.</li>
-          <li><b>Website:</b> End-to-end redesign &amp; redevelopment of company website.</li>
-        </ul>
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <p class="eyebrow">01 — Services</p>
+        <h2>What I can <em>build</em> for you</h2>
       </div>
-      <div class="ec">
-        <div class="ec-head"><div><div class="ec-role">Zoho Developer</div><div class="ec-co">Alpha Labs Tech</div></div><div class="ec-date">05/2024 – 01/2026</div></div>
-        <ul class="pts">
-          <li><b>Custom App Dev:</b> Built Zoho Creator apps across multiple industries, improving data management and UX.</li>
-          <li><b>Workflows:</b> Designed automation using Zoho CRM, Creator, and Deluge scripting.</li>
-          <li><b>Data Viz:</b> Power BI &amp; Zoho Analytics dashboards for NOVA Hospitals KPI tracking.</li>
-        </ul>
+      <div class="services">
+        <article class="svc" data-reveal>
+          <span class="svc-n">01</span>
+          <h3>Zoho One setup</h3>
+          <p>Your whole business on Zoho, set up around how your team actually works.</p>
+          <ul><li>CRM</li><li>Books</li><li>People</li><li>Payroll</li><li>Expense</li><li>Sign</li></ul>
+        </article>
+        <article class="svc" data-reveal>
+          <span class="svc-n">02</span>
+          <h3>Custom apps &amp; automation</h3>
+          <p>Apps and workflows that move your data between tools, so nobody has to copy-paste.</p>
+          <ul><li>Creator</li><li>Deluge</li><li>Flow</li><li>n8n</li><li>APIs</li></ul>
+        </article>
+        <article class="svc" data-reveal>
+          <span class="svc-n">03</span>
+          <h3>AI agents &amp; RAG</h3>
+          <p>AI that reads your documents and answers your team's questions, and agents that handle repeat tasks.</p>
+          <ul><li>Python</li><li>LLMs</li><li>Vector search</li><li>Agents</li></ul>
+        </article>
+        <article class="svc" data-reveal>
+          <span class="svc-n">04</span>
+          <h3>Dashboards &amp; reporting</h3>
+          <p>Live dashboards that show the numbers you make decisions on, always up to date.</p>
+          <ul><li>Zoho Analytics</li><li>Power BI</li><li>SQL</li></ul>
+        </article>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- ════ SKILLS ════ -->
-<div class="section-divider rev" id="skills" style="transition-delay:.05s">
-  <div class="sd-num">02</div>
-  <div class="sd-title">SKILLS</div>
-  <div class="sd-line"></div>
-  <div class="sd-hand" style="margin-right:2rem">my toolkit <span style="color:var(--red)">✦</span></div>
-</div>
-<div class="premium-skills rev" style="overflow:visible">
-  <!-- Doodles -->
-  <svg class="ps-doodle doodle-rocket" style="width:50px;height:50px;top:40%;right:-10px;transform:rotate(15deg);opacity:0.1" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2l.5-.5m-3-3l-.5.5m3 3l9.4-9.4a2.828 2.828 0 10-4-4L4.5 13.5v3h3z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  <svg class="ps-doodle doodle-plant" style="width:80px;height:80px;bottom:10px;left:4%;opacity:0.2" viewBox="0 0 100 100" fill="none" stroke="currentColor">
-    <path d="M30 90 L70 90 L65 60 L35 60 Z" stroke-width="2"/>
-    <path d="M50 60 Q40 40 20 30 Q30 50 50 60" stroke-width="2"/>
-    <path d="M50 60 Q60 30 80 20 Q70 50 50 60" stroke-width="2"/>
-    <path d="M50 60 Q55 20 40 10 Q35 30 50 60" stroke-width="2"/>
-  </svg>
-  
-  <!-- Header -->
-  <div class="ps-header">
-    <div>
-      <div class="ps-badge" style="position:relative">
-        TOOLKIT
-        <svg class="ps-doodle doodle-arrow" style="position:absolute;top:-8px;right:-30px;width:24px;transform:rotate(120deg);opacity:0.3" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 9c3-4 8-4 11-1 3 3 3 8-1 11" stroke-width="1.5" stroke-linecap="round"/><path d="M12 19h3v-3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <!-- WORK: interactive index -->
+  <section class="section work" id="work">
+    <div class="wrap">
+      <div class="sec-head work-head" data-reveal>
+        <p class="eyebrow">02 — Selected work</p>
+        <h2>Systems I've <em>shipped</em></h2>
+        <p class="sec-note">Six systems running in production. Click a project to see what it does.</p>
       </div>
-      <h2 class="ps-title">
-        <span style="position:relative">WHAT I
-          <svg style="position:absolute;bottom:-8px;left:0;width:100%;height:8px;color:var(--red)" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q50 8 100 2" stroke="currentColor" stroke-width="3" fill="none"/></svg>
-        </span> WORK WITH
+
+      <ol class="w-list">
+        <!-- 01 CRM: deal moves across a pipeline -->
+        <li class="w-row" data-reveal>
+          <button class="w-btn" type="button" aria-expanded="false">
+            <span class="w-n">01</span>
+            <span class="w-title">ACER CRM &amp; Operations</span>
+            <span class="w-cat">Operations CRM</span>
+            <span class="w-plus" aria-hidden="true"></span>
+          </button>
+          <div class="w-panel"><div class="w-panel-in">
+            <div class="w-vis" aria-hidden="true">
+              <div class="ui">
+                <div class="ui-head"><i></i><i></i><i></i><span>CRM · Deals</span></div>
+                <div class="kb">
+                  <div class="kb-col"><h6>New lead</h6><span class="kb-card"></span><span class="kb-card"></span></div>
+                  <div class="kb-col"><h6>Proposal</h6><span class="kb-card"></span></div>
+                  <div class="kb-col"><h6>Signed</h6><span class="kb-card done"></span></div>
+                  <span class="kb-move"></span>
+                </div>
+              </div>
+            </div>
+            <p>Internal CRM for a credit rating agency. Every deal moves from first contact to signed contract automatically, with documents and approvals handled along the way.</p>
+            <ul class="tags"><li>Zoho CRM</li><li>Sign</li><li>Creator</li><li>Flow</li></ul>
+          </div></div>
+        </li>
+
+        <!-- 02 HRMS: payroll rows get marked paid -->
+        <li class="w-row" data-reveal>
+          <button class="w-btn" type="button" aria-expanded="false">
+            <span class="w-n">02</span>
+            <span class="w-title">ACER HRMS &amp; Finance</span>
+            <span class="w-cat">HR &amp; Finance</span>
+            <span class="w-plus" aria-hidden="true"></span>
+          </button>
+          <div class="w-panel"><div class="w-panel-in">
+            <div class="w-vis" aria-hidden="true">
+              <div class="ui">
+                <div class="ui-head"><i></i><i></i><i></i><span>Payroll · This month</span></div>
+                <div class="rows">
+                  <div class="r"><i></i><b style="--w:70%"></b><span class="pill" style="--d:0s">Paid</span></div>
+                  <div class="r"><i></i><b style="--w:55%"></b><span class="pill" style="--d:.5s">Paid</span></div>
+                  <div class="r"><i></i><b style="--w:80%"></b><span class="pill" style="--d:1s">Paid</span></div>
+                  <div class="r"><i></i><b style="--w:62%"></b><span class="pill" style="--d:1.5s">Paid</span></div>
+                </div>
+              </div>
+            </div>
+            <p>Hiring, onboarding, payroll and expenses in one connected setup. Salaries, compliance and finance reports run on schedule without manual spreadsheets.</p>
+            <ul class="tags"><li>People</li><li>Payroll</li><li>Books</li><li>Expense</li></ul>
+          </div></div>
+        </li>
+
+        <!-- 03 RAG: documents are scanned, sensitive data masked, then indexed for the LLM -->
+        <li class="w-row" data-reveal>
+          <button class="w-btn" type="button" aria-expanded="false">
+            <span class="w-n">03</span>
+            <span class="w-title">RAG Pipeline</span>
+            <span class="w-cat">AI / Secure ops</span>
+            <span class="w-plus" aria-hidden="true"></span>
+          </button>
+          <div class="w-panel"><div class="w-panel-in">
+            <div class="w-vis" aria-hidden="true">
+              <div class="ui">
+                <div class="ui-head"><i></i><i></i><i></i><span>Zero-trust RAG · DLP gateway</span></div>
+                <div class="arch">
+                  <span class="a-node">Docs</span><i></i>
+                  <span class="a-node a-shield">DLP API</span><i></i>
+                  <span class="a-node">Vector DB</span><i></i>
+                  <span class="a-node">LLM</span>
+                </div>
+                <div class="rag">
+                  <div class="doc">
+                    <span class="scan"></span>
+                    <p><span class="k">client</span> <b class="pii" style="--d:.5s">R. Sharma</b></p>
+                    <p><span class="k">pan</span> <b class="pii" style="--d:.9s">ABCDE1234F</b></p>
+                    <p><span class="k">phone</span> <b class="pii" style="--d:1.3s">+91 98xxx 42107</b></p>
+                    <p><span class="k">rating</span> <b>A+ (stable)</b></p>
+                  </div>
+                  <ol class="stages">
+                    <li style="--d:1.6s">PII tokenized</li>
+                    <li style="--d:2s">Hybrid search</li>
+                    <li style="--d:2.4s">Re-ranked</li>
+                    <li style="--d:2.8s">Guardrail passed</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <p>A zero-trust RAG architecture for internal operations. A DLP API gateway sits in front of the AI: every document and every prompt is inspected, and sensitive data is detected and tokenized before it ever reaches a model. Clean data is chunked, embedded and indexed for hybrid vector and keyword search with re-ranking. Answers pass an output guardrail, and every request is audit-logged end to end.</p>
+            <ul class="tags"><li>Python</li><li>DLP API gateway</li><li>Zero-trust</li><li>PII tokenization</li><li>Hybrid search</li><li>Re-ranking</li><li>LLM guardrails</li><li>Audit logging</li></ul>
+          </div></div>
+        </li>
+
+        <!-- 04 LightHouse: admissions funnel -->
+        <li class="w-row" data-reveal>
+          <button class="w-btn" type="button" aria-expanded="false">
+            <span class="w-n">04</span>
+            <span class="w-title">LightHouse</span>
+            <span class="w-cat">Admissions CRM</span>
+            <span class="w-plus" aria-hidden="true"></span>
+          </button>
+          <div class="w-panel"><div class="w-panel-in">
+            <div class="w-vis" aria-hidden="true">
+              <div class="ui">
+                <div class="ui-head"><i></i><i></i><i></i><span>Admissions</span></div>
+                <div class="funnel">
+                  <div class="f"><span>Enquiries</span><b style="--w:100%"></b></div>
+                  <div class="f"><span>Applied</span><b style="--w:68%"></b></div>
+                  <div class="f"><span>Interviewed</span><b style="--w:46%"></b></div>
+                  <div class="f"><span>Admitted</span><b style="--w:30%"></b></div>
+                </div>
+              </div>
+            </div>
+            <p>Student admissions CRM. Enquiries flow in from other platforms, students get instant acknowledgments, and the team sees the whole funnel live.</p>
+            <ul class="tags"><li>Zoho CRM</li><li>Analytics</li><li>Sign</li></ul>
+          </div></div>
+        </li>
+
+        <!-- 05 EPMS: two apps stay in sync -->
+        <li class="w-row" data-reveal>
+          <button class="w-btn" type="button" aria-expanded="false">
+            <span class="w-n">05</span>
+            <span class="w-title">EPMS Franchise Portal</span>
+            <span class="w-cat">Support portal</span>
+            <span class="w-plus" aria-hidden="true"></span>
+          </button>
+          <div class="w-panel"><div class="w-panel-in">
+            <div class="w-vis" aria-hidden="true">
+              <div class="ui">
+                <div class="ui-head"><i></i><i></i><i></i><span>Two-way sync</span></div>
+                <div class="sync">
+                  <div class="s-app"><h6>Creator</h6><span></span><span></span><span class="hl"></span></div>
+                  <div class="s-mid"><i></i><i class="back"></i></div>
+                  <div class="s-app"><h6>Desk</h6><span class="hl"></span><span></span><span></span></div>
+                </div>
+              </div>
+            </div>
+            <p>Support platform for a franchise network. Tickets are created and routed automatically, and Zoho Creator and Desk stay in sync both ways in real time.</p>
+            <ul class="tags"><li>Desk</li><li>Creator</li></ul>
+          </div></div>
+        </li>
+
+        <!-- 06 R Stocks: portfolio chart -->
+        <li class="w-row" data-reveal>
+          <button class="w-btn" type="button" aria-expanded="false">
+            <span class="w-n">06</span>
+            <span class="w-title">R Stocks Trading Platform</span>
+            <span class="w-cat">Trading platform</span>
+            <span class="w-plus" aria-hidden="true"></span>
+          </button>
+          <div class="w-panel"><div class="w-panel-in">
+            <div class="w-vis" aria-hidden="true">
+              <div class="ui">
+                <div class="ui-head"><i></i><i></i><i></i><span>Portfolio</span></div>
+                <svg class="chart" viewBox="0 0 300 120" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity=".35"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient>
+                  </defs>
+                  <path class="area" d="M0 96 C30 90 45 70 70 74 S110 92 135 70 S175 30 200 44 S245 52 265 26 S290 18 300 12 V120 H0 Z" fill="url(#chartFill)"/>
+                  <path class="ln" d="M0 96 C30 90 45 70 70 74 S110 92 135 70 S175 30 200 44 S245 52 265 26 S290 18 300 12" fill="none" stroke="currentColor" stroke-width="2.5" pathLength="1"/>
+                </svg>
+              </div>
+            </div>
+            <p>A trading app built on Zoho Creator. Buy and sell stocks, manage Demat accounts across three investment types, and watch the portfolio update in real time.</p>
+            <ul class="tags"><li>Creator</li><li>Dashboards</li></ul>
+          </div></div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- floating preview that follows the cursor (desktop); slides are cloned from each row's .w-vis -->
+    <div class="w-preview" aria-hidden="true"><div class="w-preview-stack"></div></div>
+  </section>
+
+  <!-- PROCESS: sticky heading + steps that light up -->
+  <section class="section process" id="process">
+    <div class="wrap process-grid">
+      <div class="p-left">
+        <p class="eyebrow">03 — Process</p>
+        <h2>How we'll <em>work</em> together</h2>
+        <p class="p-lead">Simple, transparent, no surprises. You always know what's happening and what comes next.</p>
+        <div class="p-count" aria-hidden="true"><span class="p-cur">01</span><span class="p-tot">/ 04</span></div>
+      </div>
+      <ol class="p-steps">
+        <li class="p-line" aria-hidden="true"><span></span></li>
+        <li class="p-step is-active">
+          <span class="p-n">01</span>
+          <div>
+            <h3>Discover</h3>
+            <p>We talk about how your business runs today and find where time is being wasted.</p>
+            <ul class="tags"><li>Process map</li><li>Quick wins</li></ul>
+          </div>
+        </li>
+        <li class="p-step">
+          <span class="p-n">02</span>
+          <div>
+            <h3>Plan</h3>
+            <p>You get a clear plan with scope and timeline, agreed before any work starts.</p>
+            <ul class="tags"><li>Scope</li><li>Timeline</li></ul>
+          </div>
+        </li>
+        <li class="p-step">
+          <span class="p-n">03</span>
+          <div>
+            <h3>Build</h3>
+            <p>I build it and show you working demos along the way, not just status updates.</p>
+            <ul class="tags"><li>Working system</li><li>Demos</li></ul>
+          </div>
+        </li>
+        <li class="p-step">
+          <span class="p-n">04</span>
+          <div>
+            <h3>Launch &amp; support</h3>
+            <p>Your team gets trained, everything is documented, and it's yours to run.</p>
+            <ul class="tags"><li>Training</li><li>Docs</li><li>Handover</li></ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ABOUT: experience + skills bento -->
+  <section class="section about" id="about">
+    <div class="wrap">
+      <div class="about-top">
+        <div class="sec-head" data-reveal>
+          <p class="eyebrow">04 — Experience &amp; skills</p>
+          <h2>What I bring <em>to the table</em></h2>
+        </div>
+        <p class="about-p" data-reveal>Two years of building real systems for real teams. Here's where I've worked and the tools I use every day.</p>
+      </div>
+
+      <div class="bento">
+        <article class="bx bx-role bx-wide" data-reveal>
+          <div class="bx-top"><span class="bx-tag live"><i></i>Current</span><span class="bx-date">2026 — now</span></div>
+          <h3>Software Developer</h3>
+          <p class="bx-org">ACER Credit Rating Pvt. Ltd</p>
+          <p>Set up Zoho One across HR, finance and operations, secured the company's systems, and rebuilt the website.</p>
+          <ul class="tags"><li>Zoho One rollout</li><li>ManageEngine Endpoint Central</li><li>Website</li></ul>
+        </article>
+
+        <article class="bx bx-role" data-reveal>
+          <div class="bx-top"><span class="bx-tag">Previous</span><span class="bx-date">2024 — 2026</span></div>
+          <h3>Zoho Developer</h3>
+          <p class="bx-org">Alpha Labs Tech</p>
+          <p>Built custom Zoho apps and automations for different industries, plus hospital KPI dashboards.</p>
+        </article>
+
+        <article class="bx bx-zoho bx-wide" data-reveal>
+          <div class="bx-top"><span class="bx-tag">Zoho suite</span><span class="bx-date">14+ apps</span></div>
+          <ul class="apps">
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm.svg" alt="">CRM</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" alt="">Creator</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/books.svg" alt="">Books</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/people.svg" alt="">People</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/payroll.svg" alt="">Payroll</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/expense.svg" alt="">Expense</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/flow.svg" alt="">Flow</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/analytics.svg" alt="">Analytics</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/desk.svg" alt="">Desk</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/sign.svg" alt="">Sign</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/campaigns.svg" alt="">Campaigns</li>
+            <li><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/social.svg" alt="">Social</li>          </ul>
+        </article>
+
+        <article class="bx bx-skill" data-reveal>
+          <div class="bx-top"><span class="bx-tag">AI &amp; code</span></div>
+          <ul class="sk"><li>Python</li><li>Deluge</li><li>Client Script</li><li>SQL</li><li>LLMs</li><li>RAG</li><li>AI agents</li></ul>
+        </article>
+
+        <article class="bx bx-skill" data-reveal>
+          <div class="bx-top"><span class="bx-tag">Tools</span></div>
+          <ul class="sk"><li>Power BI</li><li>n8n</li><li>Postman</li><li>GitHub</li></ul>
+        </article>
+
+        <article class="bx bx-skill" data-reveal>
+          <div class="bx-top"><span class="bx-tag">Security</span></div>
+          <ul class="sk"><li>ManageEngine Endpoint Central</li><li>SIEM</li></ul>
+        </article>
+
+        <article class="bx bx-skill" data-reveal>
+          <div class="bx-top"><span class="bx-tag">Data</span></div>
+          <ul class="sk"><li>ETL</li><li>Data integration</li><li>Dashboards</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>05 — Contact</p>
+      <p class="contact-q" data-reveal>Got a process that eats your team's time?</p>
+      <h2 class="contact-title" aria-label="Let's automate it.">
+        <span class="line"><span>Let's</span></span>
+        <span class="line"><span><em>automate it.</em></span></span>
       </h2>
+      <div class="contact-row" data-reveal>
+        <a href="mailto:akhilsaibotu@gmail.com" class="mail magnetic">akhilsaibotu@gmail.com <span class="arr">↗</span></a>
+        <button type="button" class="btn btn-ghost btn-sm" data-copy="akhilsaibotu@gmail.com">Copy email</button>
+      </div>
+      <div class="socials" data-reveal>
+        <a href="https://www.linkedin.com/in/akhil-sai-botu/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/bakhilsai" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
     </div>
-    <div class="ps-mastered">
-      <span style="position:relative;color:#fff;font-size:1.3rem">14+ apps mastered
-        <svg style="position:absolute;bottom:-6px;left:0;width:100%;height:6px;color:var(--red)" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q50 8 100 2" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-      </span>
-      <svg class="doodle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="opacity:0.4"><path d="M5 9c3-4 8-4 11-1 3 3 3 8-1 11" stroke-width="1.5" stroke-linecap="round"/><path d="M12 19h3v-3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-  </div>
+    <footer class="foot wrap">
+      <span>© <span id="yr">2026</span> Akhil Sai Botu</span>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+  </section>
 
-  <!-- Columns Grid -->
-  <div class="ps-grid">
-    
-    <!-- COL 1 -->
-    <div class="ps-col">
-      <div class="ps-col-head">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:20px;height:20px"><path d="M7 10h10v4H7zm0 0a4 4 0 100-8 4 4 0 000 8zm10 0a4 4 0 100-8 4 4 0 000 8zm0 4a4 4 0 110 8 4 4 0 010-8zM7 14a4 4 0 110 8 4 4 0 010-8z" stroke-width="1.5"/></svg>
-        ZOHO SUITE
-      </div>
-      <div class="ps-pills zoho-grid">
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/crm.svg" class="z-ico" alt="Zoho CRM"> CRM</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/creator.svg" class="z-ico" alt="Zoho Creator"> Creator</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/analytics.svg" class="z-ico" alt="Zoho Analytics"> Analytics</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/desk.svg" class="z-ico" alt="Zoho Desk"> Desk</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/campaigns.svg" class="z-ico" alt="Zoho Campaigns"> Campaigns</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/social.svg" class="z-ico" alt="Zoho Social"> Social</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/people.svg" class="z-ico" alt="Zoho People"> People</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/payroll.svg" class="z-ico" alt="Zoho Payroll"> Payroll</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/books.svg" class="z-ico" alt="Zoho Books"> Books</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/expense.svg" class="z-ico" alt="Zoho Expense"> Expense</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/flow.svg" class="z-ico" alt="Zoho Flow"> Flow</div>
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/sign.svg" class="z-ico" alt="Zoho Sign"> Sign</div>
-        <div class="ps-pill" style="grid-column: span 2;"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/subscriptions.svg" class="z-ico" alt="Zoho Subscriptions"> Subscriptions</div>
-      </div>
-    </div>
+</main>
 
-    <!-- COL 2 -->
-    <div class="ps-col">
-      <div class="ps-col-head">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 8L6 12l4 4M14 8l4 4-4 4M16 4l-8 16" stroke-width="1.5" stroke-linecap="round"/></svg>
-        PROGRAMMING
-      </div>
-      <div class="ps-pills">
-        <div class="ps-pill"><img src="https://www.zohowebstatic.com/sites/zweb/images/productlogos/deluge.svg" alt="Deluge" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik00IDRsMTYgMTZNNCAyMGwxNi0xNiIvPjwvc3ZnPg=='"> Deluge</div>
-        <div class="ps-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python"> Python</div>
-        <div class="ps-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:20px;height:20px;color:#2c98f0"><ellipse cx="12" cy="5" rx="9" ry="3" stroke-width="1.5"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" stroke-width="1.5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" stroke-width="1.5"/></svg> SQL</div>
-      </div>
-      <svg class="ps-doodle doodle-code" style="width:50px;height:50px;bottom:-60px;left:10%;transform:rotate(-5deg);opacity:0.2" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-width="1.5"/><path d="M3 9h18M9 21V9" stroke-width="1.5"/><path d="M7 14l-2 2 2 2M11 14l2 2-2 2" stroke-width="1.5"/></svg>
-    </div>
-
-    <!-- COL 3 -->
-    <div class="ps-col">
-      <div class="ps-col-head">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 15l-6 6M15 9l6-6" stroke-width="1.5" stroke-linecap="round"/></svg>
-        TOOLS
-      </div>
-      <div class="ps-pills">
-        <div class="ps-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI"> Power BI</div>
-        <div class="ps-pill"><img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="Postman"> Postman</div>
-        <div class="ps-pill"><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg> GitHub</div>
-        <div class="ps-pill"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5C4D" style="width:20px;height:20px"><circle cx="6" cy="12" r="3" stroke-width="2"/><circle cx="18" cy="12" r="3" stroke-width="2"/><path d="M9 12h6" stroke-width="2"/></svg> n8n</div>
-      </div>
-      <svg class="ps-doodle doodle-gear" style="width:60px;height:60px;bottom:-40px;right:-10px;opacity:0.1" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke-width="1.5"/></svg>
-    </div>
-
-    <!-- COL 4 -->
-    <div class="ps-col ps-col-last">
-      <div class="ps-col-head">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21h6M12 17v4M12 3a6 6 0 00-6 6c0 4 3 6 3 8h6c0-2 3-4 3-8a6 6 0 00-6-6z" stroke-width="1.5"/></svg>
-        CONCEPTS
-      </div>
-      <div class="ps-pills">
-        <div class="ps-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:20px;height:20px;color:#2ECC71"><circle cx="12" cy="12" r="10" stroke-width="1.5"/><path d="M12 16v-4M12 8h.01" stroke-width="1.5" stroke-linecap="round"/></svg> RAG Pipeline</div>
-        <div class="ps-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:20px;height:20px;color:#9b59b6"><rect x="3" y="11" width="18" height="10" rx="2" stroke-width="1.5"/><circle cx="12" cy="5" r="2" stroke-width="1.5"/><path d="M12 7v4M8 11v4M16 11v4" stroke-width="1.5"/></svg> AI Agents</div>
-        <div class="ps-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:20px;height:20px;color:#3498db"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke-width="1.5"/></svg> ETL</div>
-        <div class="ps-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:20px;height:20px;color:#9b59b6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> SIEM</div>
-        <div class="ps-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:20px;height:20px;color:#3498db"><circle cx="18" cy="18" r="3" stroke-width="1.5"/><circle cx="6" cy="6" r="3" stroke-width="1.5"/><path d="M13 6h3a2 2 0 0 1 2 2v7M6 9v2a2 2 0 0 0 2 2h3" stroke-width="1.5"/></svg> Data Integration</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ps-bot">
-    <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" style="width:16px;height:16px;margin-top:-6px"><path d="M8 10C8 7 10 5 10 5M16 10C16 7 18 5 18 5" stroke-width="2.5" stroke-linecap="round"/></svg>
-    <span style="font-family:var(--hand);font-size:1.15rem;letter-spacing:0.05em;color:#E0E0E0">always learning, always building</span>
-    <div style="position:relative;display:inline-flex;align-items:center;justify-content:center;margin-left:4px">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" style="width:24px;height:24px">
-        <circle cx="10" cy="14" r="8" stroke-width="1.5"/>
-        <path d="M7 13h.01M13 13h.01M7 17c1 1 5 1 6 0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M18 6l2-2M20 10h3M15 3v-3" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </div>
-  </div>
+<!-- Palette picker: visitors can switch the site colours -->
+<div class="palette" role="group" aria-label="Try a colour palette">
+  <span>Palette</span>
+  <button type="button" data-palette="aurora" aria-label="Aurora: violet and pink"></button>
+  <button type="button" data-palette="ocean" aria-label="Ocean: blue and cyan"></button>
+  <button type="button" data-palette="gold" aria-label="Gold: warm gold"></button>
+  <button type="button" data-palette="ember" aria-label="Ember: orange"></button>
 </div>
 
-<!-- ════ PROJECTS ════ -->
-<div class="section-divider rev" id="projects" style="transition-delay:.05s">
-  <div class="sd-num">03</div>
-  <div class="sd-title">PROJECTS</div>
-  <div class="sd-line"></div>
-  <div class="sd-hand">things I've shipped ✦</div>
-</div>
-<div class="bento">
+<div class="progress" aria-hidden="true"><span></span></div>
+<div class="grain" aria-hidden="true"></div>
 
-  <div class="bc s4 rev" style="transition-delay:.05s">
-    <div class="tc tc-red"></div>
-    <div class="pi">
-      <div class="pi-ey">CRM · Sign · Creator · Flow</div>
-      <div class="pi-name">ACER CRM & Operations</div>
-      <div class="pi-desc">Internal CRM for credit rating workflows — lead to closure, document automation, and end-to-end process flows using Zoho Flow.</div>
-      <div class="pi-stack"><span class="ptag">CRM</span><span class="ptag">Sign</span><span class="ptag">Flow</span></div>
-    </div>
-    <div class="pi-num">01</div>
-  </div>
-
-  <div class="bc s4 rev" style="transition-delay:.1s">
-    <div class="tc tc-blue"></div>
-    <div class="pi">
-      <div class="pi-ey">People · Payroll · Books · Expense</div>
-      <div class="pi-name">ACER HRMS & Finance</div>
-      <div class="pi-desc">End-to-end HRMS — hiring pipeline, employee lifecycle, payroll compliance, expense workflows, and financial analytics dashboards.</div>
-      <div class="pi-stack"><span class="ptag">People</span><span class="ptag">Payroll</span><span class="ptag">Books</span></div>
-    </div>
-    <div class="pi-num">02</div>
-  </div>
-
-  <div class="bc s4 rev" style="transition-delay:.15s">
-    <div class="tc tc-purple"></div>
-    <div class="pi">
-      <div class="pi-ey">Python · LLM · Vector Search</div>
-      <div class="pi-name">ACER RAG Pipeline</div>
-      <div class="pi-desc">AI pipeline enabling intelligent document retrieval, query resolution and automation of internal operations using LLMs.</div>
-      <div class="pi-stack"><span class="ptag">Python</span><span class="ptag">LLM</span><span class="ptag">RAG</span></div>
-    </div>
-    <div class="pi-num">03</div>
-  </div>
-
-  <div class="bc s4 rev" style="transition-delay:.06s">
-    <div class="tc tc-green"></div>
-    <div class="pi">
-      <div class="pi-ey">Zoho CRM · Analytics · Sign</div>
-      <div class="pi-name">LightHouse</div>
-      <div class="pi-desc">Student admissions CRM: lead conversion via 3rd-party API integrations, acknowledgment automation and performance dashboards.</div>
-      <div class="pi-stack"><span class="ptag">CRM</span><span class="ptag">Analytics</span><span class="ptag">Sign</span></div>
-    </div>
-    <div class="pi-num">04</div>
-  </div>
-
-  <div class="bc s4 rev" style="transition-delay:.11s">
-    <div class="tc tc-yellow"></div>
-    <div class="pi">
-      <div class="pi-ey">Zoho Desk · Creator</div>
-      <div class="pi-name">EPMS Franchise Portal</div>
-      <div class="pi-desc">Franchise support platform with automated ticket management and real-time two-way sync between Zoho Creator and Desk.</div>
-      <div class="pi-stack"><span class="ptag">Desk</span><span class="ptag">Creator</span></div>
-    </div>
-    <div class="pi-num">05</div>
-  </div>
-
-  <!-- Featured: R Stocks (wide) -->
-  <div class="bc s4 rev" style="transition-delay:.16s">
-    <div class="tc tc-teal"></div>
-    <div class="pi">
-      <div class="pi-ey">Zoho Creator</div>
-      <div class="pi-name">R Stocks Trading Platform</div>
-      <div class="pi-desc">Buy/sell stocks, Demat account management, three investment categories and a real-time portfolio dashboard with data analytics.</div>
-      <div class="pi-stack"><span class="ptag">Creator</span><span class="ptag">Dashboard</span><span class="ptag">Trading</span></div>
-    </div>
-    <div class="pi-num">06</div>
-  </div>
-
-</div>
-
-<!-- ════ EDUCATION ════ -->
-<div class="section-divider rev" id="education">
-  <div class="sd-num">04</div>
-  <div class="sd-title">EDUCATION & CERTS</div>
-  <div class="sd-line"></div>
-  <div class="sd-hand">background ✦</div>
-</div>
-<div class="bento">
-  <div class="bc s7 rev-l">
-    <div class="tc tc-blue"></div>
-    <div class="wm">04</div>
-    <div class="btag">Education</div>
-    <div class="btitle">WHERE I STUDIED</div>
-    <div class="edu-item">
-      <div class="edu-yr">2020–24</div>
-      <div>
-        <div class="edu-h">B.Tech Computer Science Engineering</div>
-        <div class="edu-s">GITAM University</div>
-        <div class="edu-badges">
-          <div class="edu-badge">CGPA 7.89</div>
-          <div class="edu-badge">50% Scholarship</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="bc s5 rev-r" style="transition-delay:.1s">
-    <div class="tc tc-purple"></div>
-    <div class="wm">★</div>
-    <div class="btag">Certifications</div>
-    <div class="btitle">CREDENTIALS</div>
-    <div class="cert-list">
-      <div class="cert-r"><span class="star">★</span> Data Analysis with Python</div>
-      <div class="cert-r"><span class="star">★</span> Preparing Data with Excel</div>
-      <div class="cert-r"><span class="star">★</span> Data Analysis with R Programming</div>
-      <div class="cert-r"><span class="star">★</span> Bits &amp; Bytes of Networking</div>
-    </div>
-  </div>
-
-  <!-- Interests full width -->
-  <div class="bc s12 rev" style="transition-delay:.08s">
-    <div class="wm">✦</div>
-    <!-- Doodle inside -->
-    <div style="position:absolute;bottom:1.5rem;right:2rem;font-family:var(--hand);font-size:1.1rem;color:rgba(255,255,255,.08);transform:rotate(-3deg)">always learning, always building</div>
-    <div class="btag">Interests</div>
-    <div class="btitle">WHAT EXCITES ME</div>
-    <div class="int-grid">
-      <div class="int-chip"><span class="arr">→</span> AI Agents &amp; LLM Models</div>
-      <div class="int-chip"><span class="arr">→</span> RAG Pipelines</div>
-      <div class="int-chip"><span class="arr">→</span> Business Case Studies</div>
-      <div class="int-chip"><span class="arr">→</span> Equity Market</div>
-      <div class="int-chip"><span class="arr">→</span> Blockchain Technology</div>
-    </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer id="contact">
-  <div class="fg" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:3rem; margin-bottom:4rem; align-items:start;">
-    <div>
-      <div class="fh">LET'S BUILD<br>SOMETHING<br><span style="color:var(--red)">GREAT</span><br>TOGETHER.</div>
-      <div class="fhand">— akhilsaibotu@gmail.com</div>
-    </div>
-    <div class="f-right">
-      <div class="f-label">find me online</div>
-      <div class="f-ics">
-        <a href="https://www.linkedin.com/in/akhil-sai-botu/" class="fic">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://github.com" class="fic">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-        </a>
-        <a href="mailto:akhilsaibotu@gmail.com" class="fic">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="fbot" style="flex-direction:column; gap:1.5rem;">
-    <div style="max-width:640px; margin:0 auto; text-align:center; font-size:.8rem; line-height:1.6; color:var(--muted);">Started with Zoho CRM and Deluge. Two years later I was running full org implementations, building AI pipelines, and designing cybersecurity recovery plans. Every project taught me something the previous one didn't.</div>
-    <div style="display:flex; justify-content:center; width:100%; flex-wrap:wrap; gap:1rem;">
-      <div style="text-align:center; min-width:200px">© 2026 Akhil Sai Botu · <a href="tel:+917386400905">+91 7386400905</a></div>
-    </div>
-  </div>
-</footer>
-
-<script>
-// Scroll reveal
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-  });
-}, {threshold: 0.08});
-document.querySelectorAll('.rev,.rev-l,.rev-r').forEach(el => io.observe(el));
-
-// Stagger bento children
-document.querySelectorAll('.bento').forEach(b => {
-  [...b.children].forEach((c,i) => {
-    if(!c.style.transitionDelay) c.style.transitionDelay = (i * 0.07) + 's';
-    c.classList.add('rev');
-    io.observe(c);
-  });
-});
-
-// 3D card tilt
-document.querySelectorAll('.bc').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    card.style.transform = `perspective(600px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(4px)`;
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
-});
-
-// Magnetic on CTAs
-document.querySelectorAll('.btn-red,.btn-ghost,.nav-pill').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    const x = (e.clientX - r.left - r.width/2) * 0.18;
-    const y = (e.clientY - r.top - r.height/2) * 0.18;
-    btn.style.transform = `translate(${x}px,${y}px)`;
-  });
-  btn.addEventListener('mouseleave', () => btn.style.transform = '');
-});
-
-// Counter animation for stats
-const countEls = document.querySelectorAll('.stat span:first-child');
-const countIo = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      const el = e.target;
-      const val = el.textContent;
-      if(val === '∞') return;
-      const num = parseInt(val);
-      let cur = 0;
-      const step = num / 30;
-      const t = setInterval(() => {
-        cur = Math.min(cur + step, num);
-        el.textContent = Math.ceil(cur) + (val.includes('+') ? '+' : '');
-        if(cur >= num) clearInterval(t);
-      }, 30);
-      countIo.unobserve(el);
-    }
-  });
-}, {threshold: 1});
-countEls.forEach(el => countIo.observe(el));
-
-// Chip hover labels
-document.querySelectorAll('.app-c').forEach(c => {
-  c.style.transition = 'transform .3s cubic-bezier(.34,1.56,.64,1)';
-});
-
-// Mobile menu toggle
-const ham = document.getElementById('ham');
-const navLinks = document.querySelector('.nav-links');
-if (ham && navLinks) {
-  ham.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    ham.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-  });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      ham.textContent = '☰';
-    });
-  });
-}
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="main.js?v=6" defer></script>
 </body>
 </html>
